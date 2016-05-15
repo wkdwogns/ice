@@ -1,3 +1,2 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-¹Ùµð
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+ë°”ë””
