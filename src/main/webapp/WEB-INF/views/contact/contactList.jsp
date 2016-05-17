@@ -3,9 +3,9 @@
 <main>
 	
 	<div class="container">
-		<h2>Contacts</h2>
+		<h3>거래처</h3>
 		<ul class="collection">
-			<li class="collection-item avatar">
+			<li class="collection-item avatar" onclick="goList(0)">
 				<span class="title">거래처 이름</span>
 				<p>
 					<i class="material-icons">phone</i>전화번호<br> 
@@ -56,3 +56,8 @@
 		</ul>
 	</div>
 </main>
+<script>
+	function goList(no){
+		location.href = '/getEstimateListByNum/'+no;
+	}
+</script>

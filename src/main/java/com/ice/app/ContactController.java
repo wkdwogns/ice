@@ -1,7 +1,5 @@
 package com.ice.app;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -19,20 +17,10 @@ public class ContactController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "contactList", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("estimateList");
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	public String contactList(Locale locale, Model model) {
+		logger.info("contactList");
+
 		return "contact/contactList";
 	}
 	
