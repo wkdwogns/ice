@@ -7,7 +7,7 @@
 			<div class="col s6"><h3>거래처</h3></div>
 			<div class="col s6"><button class="waves-effect waves-light btn-large right" style="margin-top: 20px;" onclick="contactInsert()"><i class="material-icons left">cloud</i>등록</button></div>
 		</div>
-		
+		${list }
 		<ul class="collection">
 			<li class="collection-item avatar" onclick="goList(0)">
 				<span class="title">거래처 이름</span>
