@@ -31,7 +31,7 @@ public class EstimateController {
 		
 		System.out.println(no);
 		
-		return "estimate/estimateList";
+		return "estimate/estimateSubList";
 	}
 	
 	@RequestMapping(value = "getDetailByNum/{no}", method = RequestMethod.GET)
@@ -41,5 +41,12 @@ public class EstimateController {
 		System.out.println(no);
 		
 		return "estimate/estimateDetail";
+	}
+	
+	@RequestMapping(value = "estimateInsert", method = RequestMethod.GET)
+	public String estimateInsert(Locale locale, Model model) {
+		logger.info("estimateInsert");
+		
+		return "estimate/estimateInsert";
 	}
 }

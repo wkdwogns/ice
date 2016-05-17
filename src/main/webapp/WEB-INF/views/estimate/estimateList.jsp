@@ -3,7 +3,10 @@
 <main>
 	
 	<div class="container">
-		<h2>견적서</h2>
+		<div class="row">
+			<div class="col s6"><h2>견적서</h2></div>
+			<div class="col s6"><button class="waves-effect waves-light btn-large right" style="margin-top: 20px;" onclick="estimateInsert()"><i class="material-icons left">cloud</i>등록</button></div>
+		</div>
 		<table class="striped centered">
         <thead>
           <tr>
@@ -35,6 +38,9 @@
 </main>
 <script>
 	function detail(no){
-		location.href = '/getDetailByNum/'+no;
+		location.href = '/getEstimateListByNum/'+no;
+	}
+	function estimateInsert(){
+		location.href = '/estimateInsert';
 	}
 </script>

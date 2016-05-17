@@ -3,7 +3,7 @@
 <main>
 	
 	<div class="container">
-		<h2>견적서</h2>
+		<h2>업체 견적서 이력</h2>
 		<table class="striped centered">
         <thead>
           <tr>

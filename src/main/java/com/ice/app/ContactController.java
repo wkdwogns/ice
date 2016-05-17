@@ -24,4 +24,10 @@ public class ContactController {
 		return "contact/contactList";
 	}
 	
+	@RequestMapping(value = "contactInsert", method = RequestMethod.GET)
+	public String contactInsert(Locale locale, Model model) {
+		logger.info("contactInsert");
+
+		return "contact/contactInsert";
+	}
 }
