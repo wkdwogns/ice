@@ -6,7 +6,5 @@
     		*
     	FROM 
     		contacts
-    	
-    	
     </select>
 </mapper>
