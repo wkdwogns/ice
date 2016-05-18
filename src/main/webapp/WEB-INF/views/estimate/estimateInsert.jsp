@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <main>
 
 <div class="container">
 	<div class="row">
-		<div class="col s12 m6">
+		<div class="col s12">
 			<h3>견적서 등록</h3>
 		</div>
 	</div>
@@ -36,7 +35,7 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">today</i>
-					<input type="date" id="date" class="datepicker" value="">
+					<input type="text" id="date" class="datepicker" data-role="date">
 					<label for="date">기간</label>
 				</div>
 			</div>
@@ -48,10 +47,13 @@
 </div>
 </main>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  	<script src="/resources/pickadate.js-3.5.6/lib/picker.js"></script>
-  	<script src="/resources/pickadate.js-3.5.6/lib/picker.date.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
+	<link rel="stylesheet" href="/resources/datepicker/css/bootstrap-material-datetimepicker.css">
+	
+	<script src="/resources/datepicker/js/moment.js"></script>
+	<script src="/resources/datepicker/js/bootstrap-material-datetimepicker.js"></script>
+	
 <script>
 var availableTags = [
                      "장재훈",
@@ -81,8 +83,9 @@ var availableTags = [
   $( "#tags" ).autocomplete({
       source: availableTags
     });
-  $('.datepicker').pickadate({
-	    selectMonths: true, // Creates a dropdown to control month
-	    selectYears: 15 // Creates a dropdown of 15 years to control year
+  //$(".datepicker").datepicker();
+  $('.datepicker').bootstrapMaterialDatePicker({ 
+	  weekStart : 0, 
+	  time: false
 	  });
   </script>
