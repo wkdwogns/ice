@@ -18,35 +18,5 @@ public class MaterialController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MaterialController.class);
 	
-	@RequestMapping(value = "estimateList", method = RequestMethod.GET)
-	public String estimateList(Locale locale, Model model) {
-		logger.info("estimateList");
-		
-		return "estimate/estimateList";
-	}
 	
-	@RequestMapping(value = "getEstimateListByNum/{no}", method = RequestMethod.GET)
-	public String getEstimateListByNum(Locale locale, Model model,@PathVariable String no) {
-		logger.info("getEstimateListByNum");
-		
-		System.out.println(no);
-		
-		return "estimate/estimateSubList";
-	}
-	
-	@RequestMapping(value = "getDetailByNum/{no}", method = RequestMethod.GET)
-	public String getDetailByNum(Locale locale, Model model,@PathVariable String no) {
-		logger.info("getDetailByNum");
-		
-		System.out.println(no);
-		
-		return "estimate/estimateDetail";
-	}
-	
-	@RequestMapping(value = "estimateInsert", method = RequestMethod.GET)
-	public String estimateInsert(Locale locale, Model model) {
-		logger.info("estimateInsert");
-		
-		return "estimate/estimateInsert";
-	}
 }

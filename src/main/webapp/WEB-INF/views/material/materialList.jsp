@@ -40,6 +40,7 @@
 	function goList(no){
 		location.href = '/getEstimateListByNum/'+no;
 	}
+	
 	function contactInsert(){
 		location.href = '/contactInsert';
 	}
