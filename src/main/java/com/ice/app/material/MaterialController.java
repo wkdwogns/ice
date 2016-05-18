@@ -1,4 +1,4 @@
-package com.ice.app;
+package com.ice.app.material;
 
 import java.util.Locale;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-public class EstimateController {
+public class MaterialController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(EstimateController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MaterialController.class);
 	
 	@RequestMapping(value = "estimateList", method = RequestMethod.GET)
 	public String estimateList(Locale locale, Model model) {

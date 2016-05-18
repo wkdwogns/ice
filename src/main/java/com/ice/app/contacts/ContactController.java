@@ -27,8 +27,8 @@ public class ContactController {
 	public String contactList(Locale locale, Model model) {
 		logger.info("contactList");
 		Map<String,Object> param = new HashMap<String,Object>();
-		List<Map<String,Object>> list = contactService.contactList(param);
-		model.addAttribute("list", list);
+		//List<Map<String,Object>> list = contactService.contactList(param);
+		//model.addAttribute("list", list);
 		return "contact/contactList";
 	}
 	
