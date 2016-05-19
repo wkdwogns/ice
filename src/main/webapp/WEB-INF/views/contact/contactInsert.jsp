@@ -11,42 +11,48 @@
 	</div>
 
 	<div class="row">
-		<form class="col s12">
+		<form class="col s12" action="/contactInsertAction" method="post">
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">account_circle</i>
-					<input id="first_name" type="text" class="validate" length="50"> 
+					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50"> 
 					<label for="first_name">거래처 명</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">phone</i>
-					<input type="tel" id="disabled" class="validate"> 
+					<input type="text" id="text" name="tel" class="validate" maxlength="14" length="14"> 
 					<label for="disabled">전화번호</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
+					<i class="material-icons prefix">room</i>
+					<input type="tel" id="address" name="address" class="validate" maxlength="50" length="50"> 
+					<label for="disabled">주소</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
 					<i class="material-icons prefix">email</i>
-					<input id="email" type="email" class="validate"> 
+					<input type="email" id="email" name="email" class="validate" maxlength="45" length="45"> 
 					<label for="email">이메일</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">comment</i>
-					<input id="password" type="text" class="validate"> 
+					<input type="text" id="comment" name="comment" class="validate" maxlength="50" length="50"> 
 					<label for="password">비고</label>
 				</div>
 			</div>
-			<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+			<button class="btn waves-effect waves-light" type="submit" name="action">등록
 			    <i class="material-icons right">send</i>
 			  </button>
 		</form>
 	</div>
 </div>
-</main>
 <script>
 	function goList(no) {
 		location.href = '/getEstimateListByNum/' + no;
@@ -55,3 +61,4 @@
 		location.href = '/contactInsert';
 	}
 </script>
+</main>

@@ -7,4 +7,10 @@
     	FROM 
     		contacts
     </select>
+    <insert id="contactInsertAction" parameterType="map">
+    	insert into contacts
+    	(name,tel,address,email,comment)
+    	values
+    	(#{name},#{tel},#{address},#{email},#{comment})
+    </insert>
 </mapper>

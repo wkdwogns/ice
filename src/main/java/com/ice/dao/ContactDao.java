@@ -6,5 +6,7 @@ import java.util.Map;
 public interface ContactDao {
 
 	List<Map<String, Object>> contactList(Map<String,Object> param);
+
+	void contactInsertAction(Map<String, Object> param);
 	
 }
