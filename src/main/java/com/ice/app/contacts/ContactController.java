@@ -1,9 +1,12 @@
 package com.ice.app.contacts;
 
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +26,11 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 	
-	@RequestMapping(value = "contactList", method = RequestMethod.GET)
-	public String contactList(Locale locale, Model model) {
+	@RequestMapping(value = "contactList", method = {RequestMethod.GET,RequestMethod.POST})
+	public String contactList(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("contactList");
-		Map<String,Object> param = new HashMap<String,Object>();
-		//List<Map<String,Object>> list = contactService.contactList(param);
-		//model.addAttribute("list", list);
+		List<Map<String,Object>> list = contactService.contactList(param(request));
+		model.addAttribute("list", list);
 		return "contact/contactList";
 	}
 	
@@ -37,5 +39,27 @@ public class ContactController {
 		logger.info("contactInsert");
 
 		return "contact/contactInsert";
+	}
+	
+	@RequestMapping(value = "contactInsertAction", method = RequestMethod.POST)
+	public String contactInsertAction(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("contactInsertAction");
+		
+		contactService.contactInsertAction(param(request));
+		
+		return "redirect:/contactList";
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> param(HttpServletRequest request){
+		Map<String,Object> param = new HashMap<String, Object>();
+		Enumeration<String> em =  request.getParameterNames();
+		
+		while(em.hasMoreElements()){
+			String name=em.nextElement();
+			param.put(name, request.getParameter(name));
+		}
+		return param;
 	}
 }

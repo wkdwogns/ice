@@ -8,7 +8,7 @@
 		<tiles:insertAttribute name="meta" />
 		<title><tiles:getAsString name="title"/></title>
 	</head>
-	<body>
+	<body style="overflow-x:hidden; overflow-y:auto;">
 		<tiles:insertAttribute name="header" />
 		<tiles:insertAttribute name="body" />
 		<tiles:insertAttribute name="footer" />
