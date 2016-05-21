@@ -32,15 +32,13 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s10">
-
-				<div class="input-field col s12">
 					<i class="material-icons prefix">room</i>
 					<input type="tel" id="address" name="address" class="validate" maxlength="50" length="50"> 
 					<label for="disabled">주소</label>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s12">
+				<div class="input-field col s10">
 					<i class="material-icons prefix">email</i>
 					<input type="email" id="email" name="email" class="validate" maxlength="45" length="45"> 
 					<label for="email">이메일</label>
