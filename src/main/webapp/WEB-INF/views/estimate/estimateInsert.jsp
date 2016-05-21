@@ -74,8 +74,11 @@
 				<div class="row">
 					<div class="input-field col s12">
 							<div class="row">
-								<div class="input-field col s10 l12">
+								<div class="input-field col s10 l10">
 									<input type="text"  id="title" name="title" class="validate" maxlength="100" length="100" placeholder="제목"> 
+								</div>
+								<div class="input-field col s2 l2">
+									<a class="btn-floating"><i class="material-icons">add</i></a>
 								</div>
 							</div>
 						
@@ -104,8 +107,8 @@
 					<label for="date">기간</label>
 				</div>
 			</div>
-			<button class="btn waves-effect waves-light" type="submit" name="action">
-			    <i class="material-icons right">등록</i>
+			<button class="btn waves-effect waves-light" type="submit" name="action">등록
+			    <i class="material-icons right">send</i>
 			  </button>
 		</form>
 	</div>
