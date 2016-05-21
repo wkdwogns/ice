@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,6 +47,26 @@ public class ContactController {
 		logger.info("contactInsertAction");
 		
 		contactService.contactInsertAction(param(request));
+		
+		return "redirect:/contactList";
+	}
+	
+	@RequestMapping(value = "contactUpdate/{no}", method = RequestMethod.GET)
+	public String contactUpdate(Locale locale, Model model,HttpServletRequest request,@PathVariable String no) {
+		logger.info("contactUpdate");
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("no", no);
+		Map<String,Object> info = contactService.contactUpdate(param);
+		model.addAttribute("info", info);
+		
+		return "contact/contactUpdate";
+	}
+	
+	@RequestMapping(value = "contactUpdateAction", method = RequestMethod.POST)
+	public String contactUpdateAction(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("contactUpdateAction");
+		
+		contactService.contactUpdateAction(param(request));
 		
 		return "redirect:/contactList";
 	}

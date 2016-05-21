@@ -25,4 +25,15 @@ public class ContactServiceImpl implements ContactService{
 		contactDao.contactInsertAction(param);
 	}
 
+	@Override
+	public Map<String, Object> contactUpdate(Map<String, Object> param) {
+		
+		return contactDao.contactUpdate(param);
+	}
+
+	@Override
+	public void contactUpdateAction(Map<String, Object> param) {
+		contactDao.contactUpdateAction(param);
+	}
+
 }

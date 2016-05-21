@@ -18,7 +18,7 @@
 						<i class="material-icons">email</i>${contact.email}<br>
 						<i class="material-icons">location_on</i>${contact.address}
 					</p>
-					<a href="javascript:contactInsert();" class="secondary-content"><i class="material-icons">grade</i></a>
+					<a href="javascript:location.href='/contactUpdate/${contact.no}'" class="secondary-content"><i class="material-icons">grade</i></a>
 				</li>
 			</c:forEach>
 		</ul>

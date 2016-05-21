@@ -9,5 +9,9 @@ public interface ContactService {
 
 	void contactInsertAction(Map<String, Object> param);
 
+	Map<String, Object> contactUpdate(Map<String, Object> param);
+
+	void contactUpdateAction(Map<String, Object> param);
+
 
 }
