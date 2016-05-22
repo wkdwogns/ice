@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ice.dao.EstimateDao">
+	<insert id="estimateInsertAction" parameterType="map">
+		insert into estimate
+	    	(
+	    	estimateTitle,
+	    	contactNo,
+	    	name,
+	    	price_kr,
+	    	validity,
+	    	deliveryDate,
+	    	deliveryPlace,
+	    	paymentType,
+	    	constructionDate,
+	    	contentList,
+	    	title,
+	    	regDate,
+	    	regNm
+	    	)
+    	values
+    		(
+    		#{estimateTitle},
+    		#{contactNo},
+    		#{name},
+    		#{price_kr},
+    		#{validity},
+    		#{deliveryDate},
+    		#{deliveryPlace},
+    		#{paymentType},
+    		#{constructionDate},
+    		#{contents},
+    		#{title},
+    		now(),
+    		'관리자'
+    		)
+	</insert>
+</mapper>

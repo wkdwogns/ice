@@ -14,5 +14,10 @@ public class EstimateServiceImpl implements EstimateService{
 
 	@Autowired
 	private EstimateDao estimateDao;
+
+	@Override
+	public void estimateInsertAction(Map<String, Object> param) {
+		estimateDao.estimateInsertAction(param);
+	}
 	
 }

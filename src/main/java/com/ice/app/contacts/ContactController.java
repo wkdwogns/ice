@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Handles requests for the application home page.
@@ -69,6 +70,14 @@ public class ContactController {
 		contactService.contactUpdateAction(param(request));
 		
 		return "redirect:/contactList";
+	}
+	
+	@RequestMapping(value = "contactListAjax", method = {RequestMethod.POST})
+	@ResponseBody
+	public List<Map<String,Object>> contactListAjax(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("contactListAjax");
+		List<Map<String,Object>> list = contactService.contactList(param(request));
+		return list;
 	}
 	
 	
