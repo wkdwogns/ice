@@ -15,32 +15,26 @@
 			<div class="row">
 				<div class="input-field col s10">
 					<i class="material-icons prefix">account_circle</i>
-					<input id="first_name" type="text" class="validate" length="50" placeholder="거래처명"> 
-					<!-- <label for="first_name">거래처 명</label> -->
-
-					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50"> 
-					<label for="first_name">거래처 명</label>
-
+					<input id="name" type="text" class="validate" length="50"> 
+					<label for="name">거래처 명</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s10">
 					<i class="material-icons prefix">phone</i>
-					<input type="text" id="text" name="tel" class="validate" maxlength="14" length="14"> 
-					<label for="disabled">전화번호</label>
+					<input type="tel" id="text" name="tel" class="validate" maxlength="14" length="14"> 
+					<label for="tel">전화번호</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s10">
-
-				<div class="input-field col s12">
 					<i class="material-icons prefix">room</i>
-					<input type="tel" id="address" name="address" class="validate" maxlength="50" length="50"> 
-					<label for="disabled">주소</label>
+					<input type="text" id="address" name="address" class="validate" maxlength="50" length="50"> 
+					<label for="address">주소</label>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s12">
+				<div class="input-field col s10">
 					<i class="material-icons prefix">email</i>
 					<input type="email" id="email" name="email" class="validate" maxlength="45" length="45"> 
 					<label for="email">이메일</label>
@@ -50,7 +44,7 @@
 				<div class="input-field col s10">
 					<i class="material-icons prefix">comment</i>
 					<input type="text" id="comment" name="comment" class="validate" maxlength="50" length="50"> 
-					<label for="password">비고</label>
+					<label for="comment">비고</label>
 				</div>
 			</div>
 			<button class="btn waves-effect waves-light" type="submit" name="action">등록
