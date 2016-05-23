@@ -2,6 +2,7 @@ package com.ice.app.estimate;
 
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -37,17 +38,20 @@ public class EstimateController {
 	@RequestMapping(value = "getEstimateListByNum/{no}", method = RequestMethod.GET)
 	public String getEstimateListByNum(Locale locale, Model model,@PathVariable String no) {
 		logger.info("getEstimateListByNum");
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("contactNo", no);
 		
-		System.out.println(no);
-		
+		List<Map<String,Object>> list = estimateService.getEstimateListByNum(param);
+		model.addAttribute("list", list);
 		return "estimate/estimateSubList";
 	}
 	
 	@RequestMapping(value = "getDetailByNum/{no}", method = RequestMethod.GET)
 	public String getDetailByNum(Locale locale, Model model,@PathVariable String no) {
 		logger.info("getDetailByNum");
-		
-		System.out.println(no);
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("no", no);
+		Map<String,Object> info = estimateService.getDetailByNum(param);
 		
 		return "estimate/estimateDetail";
 	}
