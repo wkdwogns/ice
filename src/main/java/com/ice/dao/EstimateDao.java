@@ -5,5 +5,7 @@ import java.util.Map;
 
 public interface EstimateDao {
 
+	void estimateInsertAction(Map<String, Object> param);
+
 	
 }
