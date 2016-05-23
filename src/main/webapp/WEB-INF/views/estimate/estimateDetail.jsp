@@ -22,4 +22,5 @@
 	function detail(no){
 		location.href = '/getDetailByNum/'+no;
 	}
+	
 </script>

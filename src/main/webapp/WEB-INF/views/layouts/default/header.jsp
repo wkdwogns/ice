@@ -15,7 +15,7 @@
 			<li><a href="/">홈</a></li>
 			<li><a href="/contactList">거래처 관리</a></li>
 			<li><a href="/estimateList">견적서 관리</a></li>
-			<li><a href="badges.html">자재관리</a></li>
+			<li><a href="/materialList">자재관리</a></li>
 			<li><a href="collapsible.html">일지</a></li>
 		</ul>
 	</div>

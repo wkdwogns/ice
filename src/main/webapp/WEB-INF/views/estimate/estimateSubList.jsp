@@ -7,28 +7,18 @@
 		<table class="striped centered">
         <thead>
           <tr>
-              <th data-field="id">Name</th>
-              <th data-field="name">Item Name</th>
-              <th data-field="price">Item Price</th>
+              <th data-field="id">제목</th>
+              <th data-field="name">시공일</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr onclick="detail(0)">
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
+        <c:forEach var="estimate" items="${list}">
+			<tr onclick="detail(${estimate.no})">
+				<td>${estimate.estimateTitle}</td>
+				<td>${estimate.constructionDate}</td>
+			</tr>
+        </c:forEach>
         </tbody>
       </table>
 	</div>

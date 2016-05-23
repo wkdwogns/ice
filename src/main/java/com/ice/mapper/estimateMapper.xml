@@ -35,4 +35,35 @@
     		'관리자'
     		)
 	</insert>
+	<select id="getEstimateListByNum" parameterType="map" resultType="hashmap">
+		select
+			no,
+			estimateTitle,
+			constructionDate
+		from
+			estimate
+		where
+			contactNo = #{contactNo}
+	</select>
+	
+	<select id="getDetailByNum" parameterType="map" resultType="hashmap">
+		select
+			no,
+			estimateTitle,
+			name,
+			price_kr,
+			validity,
+			deliveryDate,
+			deliveryPlace,
+			paymentType,
+			constructionDate,
+			contentList, 
+			title,
+			total,
+			regDate
+		from
+			estimate 
+		where
+			no = #{no}
+	</select>
 </mapper>
