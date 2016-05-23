@@ -34,6 +34,15 @@
 					<input type="text"  id="price_kr" name="price_kr" class="validate" maxlength="50" length="50"> 
 					<label for="price_kr">금액 한글</label>
 				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s10 l6">
+					<i class="material-icons prefix">email</i>
+					<input id="email" type="email" class="validate"> 
+					<label for="email">이메일</label>
+				</div>
+			</div>
+			<div class="row">		
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20"> 
@@ -134,6 +143,7 @@
 				obj.no = data[index].no;
 				availableTags.push(obj);
 			});	
+			console.log(availableTags[0]);
 			$( "#name" ).autocomplete({
 		      source: availableTags,
 		      select: function( event, ui ) {
@@ -192,6 +202,10 @@
 	}
  
 	function fn_submit(e){
+		if($('#contactNo').val() ==''||$('#contactNo').val()==null){
+			alert('거래처명을 입력해주세요');
+			return false;
+		}
 		var arr = [];
 		$('#contentList > .row').each(function(i){
 			var row = {};
