@@ -34,15 +34,6 @@
 					<input type="text"  id="price_kr" name="price_kr" class="validate" maxlength="50" length="50"> 
 					<label for="price_kr">금액 한글</label>
 				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s10 l6">
-					<i class="material-icons prefix">email</i>
-					<input id="email" type="email" class="validate"> 
-					<label for="email">이메일</label>
-				</div>
-			</div>
-			<div class="row">		
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20"> 
