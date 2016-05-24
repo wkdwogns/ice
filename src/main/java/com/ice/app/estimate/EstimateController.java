@@ -74,10 +74,8 @@ public class EstimateController {
 	@RequestMapping(value = "estimateInsertAction", method = RequestMethod.POST)
 	public String estimateInsertAction(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("estimateInsertAction");
-		
-		//estimateService.estimateInsertAction(param(request));
-		System.out.println(param(request));
-		
+		estimateService.estimateInsertAction(param(request));
+
 		return "redirect:/estimateList";
 	}
 	
