@@ -15,5 +15,16 @@ public class MaterialServiceImpl implements MaterialService{
 
 	@Autowired
 	private MaterialDao materialDao;
+
+	@Override
+	public List<Map<String, Object>> materialList(Map<String, Object> param) {
+		
+		return materialDao.materialList(param);
+	}
+
+	@Override
+	public void materialInsertAction(Map<String, Object> param) {
+		materialDao.materialInsertAction(param);
+	}
 	
 }

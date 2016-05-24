@@ -11,5 +11,7 @@ public interface EstimateDao {
 
 	Map<String, Object> getDetailByNum(Map<String, Object> param);
 
+	List<Map<String, Object>> estimateList(Map<String, Object> param);
+
 	
 }

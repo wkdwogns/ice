@@ -17,31 +17,22 @@
         </thead>
 
         <tbody>
-          <tr onclick="detail(0)">
-            <td>Alvin</td>
-            <td>1</td>
-            
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>2</td>
-            
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>4</td>
-            
-          </tr>
+        	<c:forEach var="material" items="${list}">
+        		<tr onclick="detail(${material.no})">
+		            <td>${material.name}</td>
+		            <td>${material.quantity}</td>
+		          </tr>
+        	</c:forEach>
         </tbody>
       </table>
 	</div>
 </main>
 <script>
-	function goList(no){
+	function detail(no){
 		location.href = '/getEstimateListByNum/'+no;
 	}
 	
-	function contactInsert(){
-		location.href = '/contactInsert';
+	function materialInsert(){
+		location.href = '/materialInsert';
 	}
 </script>

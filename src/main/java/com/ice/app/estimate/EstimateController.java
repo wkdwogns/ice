@@ -29,10 +29,11 @@ public class EstimateController {
 	@Autowired
 	private EstimateService estimateService;
 	
-	@RequestMapping(value = "estimateList", method = RequestMethod.GET)
-	public String estimateList(Locale locale, Model model) {
+	@RequestMapping(value = "estimateList", method = {RequestMethod.GET,RequestMethod.POST})
+	public String estimateList(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("estimateList");
-		
+		List<Map<String,Object>> list = estimateService.estimateList(param(request));
+		model.addAttribute("list", list);
 		return "estimate/estimateList";
 	}
 	

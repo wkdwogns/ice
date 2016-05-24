@@ -66,4 +66,14 @@
 		where
 			no = #{no}
 	</select>
+	
+	<select id="estimateList" parameterType="map" resultType="hashmap">
+		select
+			no,
+			estimateTitle,
+			constructionDate
+		from
+			estimate
+		group by contactNo
+	</select>
 </mapper>

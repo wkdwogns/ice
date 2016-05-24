@@ -30,5 +30,11 @@ public class EstimateServiceImpl implements EstimateService{
 		
 		return estimateDao.getDetailByNum(param);
 	}
+
+	@Override
+	public List<Map<String, Object>> estimateList(Map<String, Object> param) {
+
+		return estimateDao.estimateList(param);
+	}
 	
 }
