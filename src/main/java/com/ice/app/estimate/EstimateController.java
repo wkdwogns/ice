@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Handles requests for the application home page.
@@ -49,11 +50,18 @@ public class EstimateController {
 	@RequestMapping(value = "getDetailByNum/{no}", method = RequestMethod.GET)
 	public String getDetailByNum(Locale locale, Model model,@PathVariable String no) {
 		logger.info("getDetailByNum");
-		Map<String,Object> param = new HashMap<String, Object>();
-		param.put("no", no);
-		Map<String,Object> info = estimateService.getDetailByNum(param);
-		
+		model.addAttribute("no", no);
 		return "estimate/estimateDetail";
+	}
+	
+	@RequestMapping(value = "getDetailByNumAjax", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> getDetailByNumAjax(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("getDetailByNumAjax");
+		
+		Map<String,Object> info = estimateService.getDetailByNum(param(request));
+		
+		return info;
 	}
 	
 	@RequestMapping(value = "estimateInsert", method = RequestMethod.GET)
