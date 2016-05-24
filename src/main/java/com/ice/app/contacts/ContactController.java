@@ -80,6 +80,15 @@ public class ContactController {
 		return list;
 	}
 	
+	@RequestMapping(value = "contactDelete/{no}", method = RequestMethod.GET)
+	public String contactDelete(Locale locale, Model model,@PathVariable String no) {
+		logger.info("contactDelete");
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("no", no);
+		contactService.contactDelete(param);
+		
+		return "redirect:/contactList";
+	}
 	
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> param(HttpServletRequest request){

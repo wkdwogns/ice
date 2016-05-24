@@ -37,11 +37,12 @@ public class EstimateController {
 		return "estimate/estimateList";
 	}
 	
-	@RequestMapping(value = "getEstimateListByNum/{no}", method = RequestMethod.GET)
-	public String getEstimateListByNum(Locale locale, Model model,@PathVariable String no) {
+	@RequestMapping(value = "getEstimateListByNum/{no}", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getEstimateListByNum(Locale locale, Model model,@PathVariable String no,HttpServletRequest request) {
 		logger.info("getEstimateListByNum");
 		Map<String,Object> param = new HashMap<String, Object>();
 		param.put("contactNo", no);
+		param.put("constructionDate", request.getParameter("constructionDate"));
 		
 		List<Map<String,Object>> list = estimateService.getEstimateListByNum(param);
 		model.addAttribute("list", list);

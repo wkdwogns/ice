@@ -27,6 +27,7 @@
       </table>
 	</div>
 </main>
+
 <script>
 	function detail(no){
 		location.href = '/getEstimateListByNum/'+no;

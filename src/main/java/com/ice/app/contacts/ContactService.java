@@ -13,5 +13,7 @@ public interface ContactService {
 
 	void contactUpdateAction(Map<String, Object> param);
 
+	void contactDelete(Map<String, Object> param);
+
 
 }

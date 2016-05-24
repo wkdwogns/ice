@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<nav>
+<div class="navbar-fixed">	
+	<nav>
 	<div class="nav-wrapper teal lighten-2">
 		<a href="/" class="brand-logo">한국냉동</a>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -20,6 +21,8 @@
 		</ul>
 	</div>
 </nav>
+</div>
+
 <script type="text/javascript">
 	$(".button-collapse").sideNav();
 </script>

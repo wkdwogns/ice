@@ -36,4 +36,9 @@ public class ContactServiceImpl implements ContactService{
 		contactDao.contactUpdateAction(param);
 	}
 
+	@Override
+	public void contactDelete(Map<String, Object> param) {
+		contactDao.contactDelete(param);
+	}
+
 }

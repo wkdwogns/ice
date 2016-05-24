@@ -47,9 +47,12 @@
 					<label for="password">비고</label>
 				</div>
 			</div>
-			<button class="btn waves-effect waves-light" type="submit" name="action">수정
-			    <i class="material-icons right">send</i>
-			  </button>
+			<button class="btn waves-effect waves-light" type="submit">수정
+				<i class="material-icons right">send</i>
+			</button>
+			<button class="btn waves-effect waves-light red" type="button" onclick="del(${info.no})">삭제
+				<i class="material-icons right">send</i>
+			</button>
 		</form>
 	</div>
 </div>
@@ -59,6 +62,13 @@
 	}
 	function contactInsert() {
 		location.href = '/contactInsert';
+	}
+	function del(no) {
+		var letitgo = confirm('정말로 삭제하시겠습니까?');
+		if(letitgo){
+			location.href = '/contactDelete/'+no;
+		}
+		
 	}
 </script>
 </main>

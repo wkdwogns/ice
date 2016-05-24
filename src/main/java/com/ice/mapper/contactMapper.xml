@@ -3,9 +3,15 @@
 <mapper namespace="com.ice.dao.ContactDao">
    <select id="contactList" parameterType="map" resultType="hashmap">
     	select 
-    		*
+    		no,
+    		name,
+    		tel,
+    		address,
+    		email
     	from 
     		contacts
+    	where
+    		delyn='n'
     </select>
     <insert id="contactInsertAction" parameterType="map">
     	insert into contacts
@@ -31,6 +37,15 @@
     		address=#{address},
     		email=#{email},
     		comment=#{comment}
+    	where 
+    		no = #{no}
+    </update>
+    
+    <update id="contactDelete" parameterType="map">
+    	update 
+    		contacts
+    	set
+    		delyn = 'y'
     	where 
     		no = #{no}
     </update>

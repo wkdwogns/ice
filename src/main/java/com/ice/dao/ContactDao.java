@@ -12,5 +12,7 @@ public interface ContactDao {
 	Map<String, Object> contactUpdate(Map<String, Object> param);
 
 	void contactUpdateAction(Map<String, Object> param);
+
+	void contactDelete(Map<String, Object> param);
 	
 }

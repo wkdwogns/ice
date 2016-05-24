@@ -44,6 +44,7 @@
 			estimate
 		where
 			contactNo = #{contactNo}
+			and constructionDate = #{constructionDate}
 	</select>
 	
 	<select id="getDetailByNum" parameterType="map" resultType="hashmap">
@@ -69,11 +70,11 @@
 	
 	<select id="estimateList" parameterType="map" resultType="hashmap">
 		select
-			no,
-			estimateTitle,
+			contactNo,
+			name,
 			constructionDate
 		from
 			estimate
-		group by contactNo
+		group by contactNo,constructionDate
 	</select>
 </mapper>

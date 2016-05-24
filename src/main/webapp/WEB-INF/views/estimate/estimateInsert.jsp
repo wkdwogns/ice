@@ -37,7 +37,7 @@
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20"> 
-					<label for="constructionDate">작성일</label>
+					<label for="constructionDate">시공일</label>
 				</div>
 			</div>
 			
