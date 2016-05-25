@@ -85,7 +85,7 @@ public class DiaryController {
     		}
         } 
 
-		return "diary/diaryInsert";
+		return "redirect:/diaryList";
 	}
 	
 	@RequestMapping(value = "diaryDetail", method = {RequestMethod.POST})
