@@ -26,8 +26,6 @@
 </main>
 
 <script>
-	window.history.forward(0);
-
 	function goList(no){
 		location.href = '/estimateList?search=contactNo&searchKeyword='+no;
 	}

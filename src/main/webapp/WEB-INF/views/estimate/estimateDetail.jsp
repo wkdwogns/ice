@@ -47,11 +47,13 @@
 </main>
 <script>
 	function del(no,d){
-		location.href = '/estimateDelete/'+no;
-		$('#no').val(no);
-		$('#constructionDate').val(d);
-		$('#eForm').attr('action','/estimateDelete/');
-		$('#eForm').submit();
+		var letitgo = confirm('정말로 삭세하시겠습니까?');
+		if(letitgo){
+			$('#no').val(no);
+			$('#constructionDate').val(d);
+			$('#eForm').attr('action','/estimateDelete/');
+			$('#eForm').submit();
+		}
 	}
 	
 	$.ajax({
