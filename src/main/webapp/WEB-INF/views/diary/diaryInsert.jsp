@@ -11,13 +11,13 @@
 	</div>
 
 	<div class="row">
-		<form class="col s12" action="/diaryInsertAction" method="post" enctype="multipart/form-data">
+		<form class="col s12" action="/diaryInsertAction" method="post" enctype="multipart/form-data" onsubmit="return fn_submit()">
 			<input type="hidden" id="contactNo" name="contactNo"> 
 			
 			<div class="row">
 				<div class="input-field col s10 l12 hide-on-large-only">
 					<i class="material-icons prefix">add</i> 
-					<input type="number" id="num" name="num" class="validate" maxlength="11" length="11" required="required">
+					<input type="number" id="num" name="num" class="validate" maxlength="11" length="11">
 					<label for="num">거래처 번호</label>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="input-field col s10 l12 hide-on-med-and-down">
 					<i class="material-icons prefix">account_circle</i> 
-					<input type="text" id="name" name="name" class="validate" maxlength="45" length="45" required="required">
+					<input type="text" id="name" name="name" class="validate" maxlength="45" length="45">
 					<label for="name">거래처 명</label>
 				</div>
 			</div>
@@ -63,6 +63,46 @@
 	</div>
 </div>
 </main>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+	var availableTags = [];
 
-
-
+	$.ajax({
+		url:'/contactListAjax',
+		data:{ 'temp' : '' },
+		type: "post",
+		dataType :'json',
+		success:function(data){
+			$.each(data, function( index, value ) {
+				var obj = {};
+				obj.value = data[index].name;
+				obj.no = data[index].no;
+				availableTags.push(obj);
+			});	
+			console.log(availableTags[0]);
+			$( "#name" ).autocomplete({
+		      source: availableTags,
+		      select: function( event, ui ) {
+		          $("#contactNo").val( ui.item.no ); 
+		          return false;
+		        }
+		    });
+		},error:function(){
+			
+		}	
+	});
+	
+	$('input').on('keydown',function(e){
+		if(e.keyCode==13){e.preventDefault();} 
+	});
+	
+	function fn_submit(){
+		var contactNo = $('#contactNo').val();
+		if(contactNo=='' || contactNo==null){
+			alert('거래처명을 다시 입력하세요.');
+			return false;
+		}
+		return true;
+	}
+  </script>

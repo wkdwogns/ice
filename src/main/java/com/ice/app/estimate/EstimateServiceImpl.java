@@ -26,15 +26,23 @@ public class EstimateServiceImpl implements EstimateService{
 	}
 
 	@Override
-	public Map<String, Object> getDetailByNum(Map<String, Object> param) {
-		
+	public Map<String, Object> getDetailByNum(Map<String, Object> param) {		
 		return estimateDao.getDetailByNum(param);
 	}
 
 	@Override
 	public List<Map<String, Object>> estimateList(Map<String, Object> param) {
-
 		return estimateDao.estimateList(param);
+	}
+
+	@Override
+	public int estimateListCnt(Map<String, Object> param) {
+		return estimateDao.estimateListCnt(param);
+	}
+
+	@Override
+	public void estimateDelete(Map<String, Object> param) {
+		estimateDao.estimateDelete(param);
 	}
 	
 }

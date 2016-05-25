@@ -26,8 +26,10 @@
 </main>
 
 <script>
+	window.history.forward(0);
+
 	function goList(no){
-		location.href = '/getEstimateListByNum/'+no;
+		location.href = '/estimateList?search=contactNo&searchKeyword='+no;
 	}
 	function contactInsert(){
 		location.href = '/contactInsert';

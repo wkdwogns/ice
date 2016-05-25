@@ -36,7 +36,7 @@
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
-					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20"> 
+					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20" required="required"> 
 					<label for="constructionDate">시공일</label>
 				</div>
 			</div>
@@ -138,7 +138,7 @@
 			$( "#name" ).autocomplete({
 		      source: availableTags,
 		      select: function( event, ui ) {
-		          $( "#contactNo" ).val( ui.item.no );
+		          $("#contactNo").val( ui.item.no ); 
 		          return false;
 		        }
 		    });

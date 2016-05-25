@@ -14,7 +14,7 @@
 
         <tbody>
         <c:forEach var="estimate" items="${list}">
-			<tr onclick="detail(${estimate.no})">
+			<tr onclick="detail('${estimate.no}','${estimate.constructionDate}')">
 				<td>${estimate.estimateTitle}</td>
 				<td>${estimate.constructionDate}</td>
 			</tr>
@@ -22,9 +22,14 @@
         </tbody>
       </table>
 	</div>
+	<form id="eForm" action="" method="post">
+		<input type="hidden" id="constructionDate" name="constructionDate">
+	</form>
 </main>
 <script>
-	function detail(no){
-		location.href = '/getDetailByNum/'+no;
+	function detail(no,d){
+		$('#constructionDate').val(d);
+		$('#eForm').attr('action','/getDetailByNum/'+no);
+		$('#eForm').submit();
 	}
 </script>

@@ -2,10 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <main>
 	
-	<div class="">
+	
 		<div class="row">
-			<div class="col s12 l12">
+			<div class="col s6">
 				<h4 id="estimateTitle"></h4>
+			</div>
+			<div class="col s6">
+				<button class="btn right red" style="margin-top: 20px;" onclick="del('${no}','${conDt}');"><i class="material-icons left">cloud</i>삭제</button>
+				<button class="btn right" style="margin-top: 20px; margin-right:10px;"><i class="material-icons left">cloud</i>수정</button>
 			</div>
 		</div>
 		<div class="row">
@@ -34,13 +38,20 @@
 		      </table>
 			</div>
 		</div>
+		<form id="eForm" action="" method="post">
+			<input type="hidden" id="no" name="no">
+			<input type="hidden" id="constructionDate" name="constructionDate">
+		</form>
 		
-		
-	</div>
+	
 </main>
 <script>
-	function detail(no){
-		location.href = '/getDetailByNum/'+no;
+	function del(no,d){
+		location.href = '/estimateDelete/'+no;
+		$('#no').val(no);
+		$('#constructionDate').val(d);
+		$('#eForm').attr('action','/estimateDelete/');
+		$('#eForm').submit();
 	}
 	
 	$.ajax({

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ice.app.util.Utilities;
+
+
 /**
  * Handles requests for the application home page.
  */
@@ -32,8 +35,17 @@ public class EstimateController {
 	@RequestMapping(value = "estimateList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String estimateList(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("estimateList");
-		List<Map<String,Object>> list = estimateService.estimateList(param(request));
+		String pIndex = request.getParameter("pIndex");
+		if(pIndex ==null || pIndex.equals("")){pIndex = "1";}
+		
+		//param.putAll(info);
+		int tot = estimateService.estimateListCnt(param(request));
+		Utilities util = new Utilities();
+		Map<String,Object> param = util.page(10,tot,pIndex);
+		param.putAll(param(request));
+		List<Map<String,Object>> list = estimateService.estimateList(param);
 		model.addAttribute("list", list);
+		model.addAttribute("info", param);
 		return "estimate/estimateList";
 	}
 	
@@ -49,10 +61,11 @@ public class EstimateController {
 		return "estimate/estimateSubList";
 	}
 	
-	@RequestMapping(value = "getDetailByNum/{no}", method = RequestMethod.GET)
-	public String getDetailByNum(Locale locale, Model model,@PathVariable String no) {
+	@RequestMapping(value = "getDetailByNum/{no}", method = {RequestMethod.POST})
+	public String getDetailByNum(Locale locale, Model model,@PathVariable String no,HttpServletRequest request) {
 		logger.info("getDetailByNum");
 		model.addAttribute("no", no);
+		model.addAttribute("conDt", request.getParameter("constructionDate"));
 		return "estimate/estimateDetail";
 	}
 	
@@ -79,6 +92,15 @@ public class EstimateController {
 		estimateService.estimateInsertAction(param(request));
 
 		return "redirect:/estimateList";
+	}
+	
+	@RequestMapping(value = "estimateDelete", method = RequestMethod.POST)
+	public String estimateDelete(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("estimateDelete");
+		estimateService.estimateDelete(param(request));
+		String no = request.getParameter("no");
+		String constructionDate = request.getParameter("constructionDate");
+		return "redirect:/getEstimateListByNum/"+no+"?constructionDate="+constructionDate;
 	}
 	
 	@SuppressWarnings("unchecked")

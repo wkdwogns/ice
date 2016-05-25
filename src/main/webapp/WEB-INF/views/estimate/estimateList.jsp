@@ -11,20 +11,20 @@
 		<div class="row">
 			<form id="sForm" action="/estimateList" method="post">
 				<input type="hidden" id="pIndex" name="pIndex">
-				<div class="col s6 l2"><input type="text" id="sDm" name="sDm" placeholder="시작일"></div>
-				<div class="col s6 l2"><input type="text" id="eDm" name="eDm" placeholder="종료일"></div>
+				<div class="col s6 l2"><input type="text" id="sDm" name="sDm" value="${info.sDm}" placeholder="시작일"></div>
+				<div class="col s6 l2"><input type="text" id="eDm" name="eDm" value="${info.eDm}" placeholder="종료일"></div>
 				<div class="col s5 l3">
 					<select name="search">
-						<option value="" disabled selected>선택</option>
-						<option value="contactNo">거래처 번호</option>
-						<option value="name">거래처 명</option>
+						<option>선택</option>
+						<option value="contactNo" <c:if test="${info.search eq 'contactNo'}">selected</c:if>>거래처 번호</option>
+						<option value="name" <c:if test="${info.search eq 'name'}">selected</c:if>>거래처 명</option>
 				    </select>
 			    </div>
-				<div class="col s3 l3"><input type="text" name="searchKeyword"></div>
-				<div class="col s4 l2"><button class="btn right" onclick="estimateInsert()">검색</button></div>
+				<div class="col s3 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
+				<div class="col s4 l2"><button type="submit" class="btn right">검색</button></div>
 			</form>
 		</div>
-		<table class="striped centered">
+		<table class="bordered centered">
         <thead>
 			<tr>
 				<th data-field="contactNo">거래처 번호</th>
@@ -44,6 +44,20 @@
         </tbody>
       </table>
 	</div>
+	
+	<ul class="pagination center-align">
+		<c:if test="${info.pNo ne  '1'}">
+			<li><a href='javascript:page(${info.pNo-1});'><i class="material-icons">chevron_left</i></a></li>
+		</c:if>
+		<c:forEach var="idx" begin="${info.pageStart}" end="${info.pageEnd}">
+			<c:if test="${idx == info.pNo}"><li class="active teal"><a href="#!">${idx}</a></li></c:if>
+			<c:if test="${idx != info.pNo}"><li><a href='javascript:page(${idx});'>${idx}</a></li></c:if>
+		</c:forEach>
+		<c:if test="${info.pNo ne info.pageEnd}">
+			<li class="waves-effect"><a href="javascript:page(${info.pNo+1});"><i class="material-icons">chevron_right</i></a></li>
+		</c:if>
+	</ul>
+	
 	<form id="eForm" action="" method="post">
 		<input type="hidden" id="constructionDate" name="constructionDate">
 	</form>
@@ -65,5 +79,9 @@
 	}
 	function estimateInsert(){
 		location.href = '/estimateInsert';
+	}
+	function page(no){
+		$('#pIndex').val(no);
+		$('#sForm').submit();
 	}
 </script>

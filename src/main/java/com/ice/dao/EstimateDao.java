@@ -13,5 +13,9 @@ public interface EstimateDao {
 
 	List<Map<String, Object>> estimateList(Map<String, Object> param);
 
+	int estimateListCnt(Map<String, Object> param);
+
+	void estimateDelete(Map<String, Object> param);
+
 	
 }

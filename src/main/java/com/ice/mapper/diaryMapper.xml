@@ -4,4 +4,41 @@
    <select id="diaryList" parameterType="map" resultType="hashmap">
    	select * from diary
    </select>
+   <insert id="diaryInsertAction" parameterType="map">
+   	insert into diary
+   	(
+   		contactNo,
+   		title,
+   		contents,
+   		regDate
+   	)
+   	values
+   	(
+   		#{contactNo},
+   		#{title},
+   		#{content},
+   		now()
+   	)
+   </insert>
+   
+   <insert id="imageInsertAction" parameterType="map">
+   	insert into images
+   	(
+   		type,
+   		contactNo,
+   		readNo,
+   		realNm,
+   		virtualNm,
+   		regDate
+   	)
+   	values
+   	(
+   		#{type},
+   		#{contactNo},
+   		(SELECT no FROM diary order by no desc limit 1),
+   		#{realNm},
+   		#{virtualNm},
+   		now()
+   	)
+   </insert>
 </mapper>

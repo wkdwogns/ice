@@ -43,7 +43,8 @@
 		from
 			estimate
 		where
-			contactNo = #{contactNo}
+			delyn = 'n'
+			and contactNo = #{contactNo}
 			and constructionDate = #{constructionDate}
 	</select>
 	
@@ -65,7 +66,8 @@
 		from
 			estimate 
 		where
-			no = #{no}
+			delyn = 'n'
+			and no = #{no}
 	</select>
 	
 	<select id="estimateList" parameterType="map" resultType="hashmap">
@@ -75,6 +77,52 @@
 			constructionDate
 		from
 			estimate
+		where
+			delyn = 'n'
+			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
+				 and constructionDate between #{sDm} and #{eDm}
+			</if>
+			<if test="search == 'contactNo'">
+				and contactNo  =  #{searchKeyword}
+			</if>
+			<if test="search == 'name'">
+				and name like CONCAT('%',#{searchKeyword},'%')
+			</if>
 		group by contactNo,constructionDate
+		limit
+			#{fst},#{lst}
 	</select>
+	
+	<select id="estimateListCnt" parameterType="map" resultType="int">
+	select 
+		count(*) 
+	from 
+		(
+		select
+			no
+		from
+			estimate
+		where
+			delyn = 'n'
+			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
+				 and constructionDate between #{sDm} and #{eDm}
+			</if>
+			<if test="search == 'contactNo'">
+				and contactNo  =  #{searchKeyword}
+			</if>
+			<if test="search == 'name'">
+				and name like CONCAT('%',#{searchKeyword},'%')
+			</if>
+		group by contactNo,constructionDate
+		)tb
+	</select>
+	
+	<update id="estimateDelete" parameterType="map">
+		update
+			estimate
+		set
+			delyn='y'
+		where
+			no = #{no}
+	</update>
 </mapper>

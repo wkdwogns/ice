@@ -34,8 +34,8 @@ public class DiaryController {
 	@RequestMapping(value = "diaryList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String diaryList(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("diaryList");
-		//List<Map<String,Object>> list = diaryService.diaryList(param(request));
-		//model.addAttribute("list", list);
+		List<Map<String,Object>> list = diaryService.diaryList(param(request));
+		model.addAttribute("list", list);
 		return "diary/diaryList";
 	}
 	
@@ -49,6 +49,9 @@ public class DiaryController {
 	@RequestMapping(value = "diaryInsertAction", method = {RequestMethod.POST})
 	public String diaryInsertAction(Locale locale, Model model,HttpServletRequest request,@RequestParam("files") MultipartFile[] files) {
 		logger.info("diaryInsertAction");
+		
+		diaryService.diaryInsertAction(param(request));
+		
 		String fileName = null;
     	String savepath = "C:/img/";
     	
@@ -67,20 +70,26 @@ public class DiaryController {
 	                buffStream.write(bytes);
 	                buffStream.close();
 	                
-	                String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());  //현재시간
+	                String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());
 	                int k = -1;
-	                k = fileName.lastIndexOf("."); // 파일 확장자 위치
-	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());  //현재시간과 확장자 합치기
+	                k = fileName.lastIndexOf(".");
+	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
 	                
 	                File oldFile = new File(savepath + fileName);
-	                File newFile = new File(savepath+realFileName); 
-	                oldFile.renameTo(newFile); // 파일명 변경
+	                File newFile = new File(savepath+realFileName);
+	                oldFile.renameTo(newFile);
+	                
+	                Map<String,Object> param = new HashMap<String, Object>();
+	                param.put("type", "d");
+	                param.put("contactNo",request.getParameter("contactNo"));
+	                param.put("realNm",fileName);
+	                param.put("virtualNm",realFileName);
+	                diaryService.imageInsertAction(param);
 	            } catch (Exception e) {
 	                
 	            }
     		}
-        } 
-
+        }
 		return "redirect:/diaryList";
 	}
 	
