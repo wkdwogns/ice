@@ -5,5 +5,7 @@ import java.util.Map;
 
 public interface DiaryService {
 
+	List<Map<String, Object>> diaryList(Map<String, Object> param);
+
 	
 }

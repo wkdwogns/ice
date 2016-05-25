@@ -27,25 +27,27 @@
 		<table class="striped centered">
         <thead>
 			<tr>
-				<th data-field="contactNo">거래처 번호</th>
-			    <th data-field="name">거래처명</th>
-			    <th data-field="constructionDate">시공일</th>
+				<th data-field="title">제목</th>
+			    <th data-field="regDate">작성일</th>
 			</tr>
         </thead>
 
         <tbody>
-          <c:forEach var="estimate" items="${list}">
-          	<tr onclick="detail(${estimate.contactNo},'${estimate.constructionDate}')" style="cursor:pointer;">
-          		<td>${estimate.contactNo}</td>
-	            <td>${estimate.name}</td>
-	            <td>${estimate.constructionDate}</td>
+        		<tr onclick="detail(0)">
+	          		<td>제목</td>
+		            <td>2016.05.25</td>
+				</tr>
+          <c:forEach var="diary" items="${list}">
+          	<tr>
+          		<td>${diary.title}</td>
+	            <td>${diary.regDate}</td>
 			</tr>
           </c:forEach>
         </tbody>
       </table>
 	</div>
 	<form id="eForm" action="" method="post">
-		<input type="hidden" id="constructionDate" name="constructionDate">
+		<input type="hidden" id="no" name="no">
 	</form>
 </main>
 <link rel="stylesheet" href="/resources/datepicker/css/bootstrap-material-datetimepicker.css">
@@ -58,12 +60,12 @@
 	{
 	$('#eDm').bootstrapMaterialDatePicker('setMinDate', date);
 	});
-	function detail(no,d){
-		$('#constructionDate').val(d);
-		$('#eForm').attr('action','/getEstimateListByNum/'+no);
+	function detail(no){
+		$('#no').val(no);
+		$('#eForm').attr('action','/diaryDetail');
 		$('#eForm').submit();
 	}
 	function estimateInsert(){
-		location.href = '/estimateInsert';
+		location.href = '/diaryInsert';
 	}
 </script>

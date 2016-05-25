@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 
 <main>
-	<h1>
+	<h1 class="thin">
 	Hello world!  
 	</h1>
 	<P>  The time on the server is ${serverTime}. </P>

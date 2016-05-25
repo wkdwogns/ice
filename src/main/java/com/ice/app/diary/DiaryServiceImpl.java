@@ -15,5 +15,11 @@ public class DiaryServiceImpl implements DiaryService{
 	@Autowired
 	private DiaryDao diaryDao;
 
+	@Override
+	public List<Map<String, Object>> diaryList(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return diaryDao.diaryList(param);
+	}
+
 	
 }

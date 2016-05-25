@@ -9,61 +9,39 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col s12 l6">
-				<div class="card-panel teal">
-					<h5 class="white-text">거래처 명</h5>
-					<span id="name" class="white-text"></span>
-		        </div>
-		        <div class="card-panel teal">
-					<h5 class="white-text">금액</h5>
-					<span id="price_kr" class="white-text"></span>
-		        </div>
+			
+			<div class="row">
+				<div class="input-field col s10 l12">
+					<i class="material-icons prefix">description</i> 
+					<input type="text" id="title" name="title" class="validate" maxlength="45" length="45" value="asd" required="required">
+					<label for="title">제목</label>
+				</div>
 			</div>
-			<div class="col s12 l6">
-				<table id="infoT" class="bordered">
-		        <thead>
-		          <tr>
-		              <th data-field="name" class="grey-text">자재명</th>
-		              <th data-field="unit">단위</th>
-		              <th data-field="price">수량</th>
-		              <th data-field="quantity">가격</th>
-		              <th data-field="total">합계</th>
-		          </tr>
-		        </thead>
-		        <tbody></tbody>
-		      </table>
+
+			<div class="row">
+				<div class="row">
+					<div class="input-field col s10 l12">
+						<i class="material-icons prefix">mode_edit</i>
+						<textarea id="content" name="content" class="materialize-textarea" maxlength="2000" length="2000" required="required">aspodi</textarea>
+						<label for="content">내용</label>
+					</div>
+				</div>
 			</div>
+			
+			<div class="carousel">
+			    <a class="carousel-item" href="#one!"><img src="/img/Chrysanthemum.jpg"></a>
+			    <a class="carousel-item" href="#two!"><img src="/img/Desert.jpg"></a>
+			    <a class="carousel-item" href="#three!"><img src="/img/Koala.jpg"></a>
+			    <a class="carousel-item" href="#four!"><img src="/img/Hydrangeas.jpg"></a>
+			    <a class="carousel-item" href="#five!"><img src="/img/Jellyfish.jpg"></a>
+			  </div>
+  
 		</div>
 	</div>
 </main>
 <script>
-	function detail(no){
-		location.href = '/getDetailByNum/'+no;
-	}
-	
-	$.ajax({
-		url:'/getDetailByNumAjax',
-		data:{ 'no' : '${no}' },
-		type: "post",
-		dataType :'json',
-		success:function(data){
-			$('#estimateTitle').text(data.estimateTitle);
-			$('#name').text(data.name);
-			$('#price_kr').text(data.price_kr+' 원정');
-			var obj = jQuery.parseJSON( data.contentList );
-			var html = '';
-			for(i in obj){
-				html +='<tr>';
-				html +='<td>'+obj[i].name+'</td>';
-				html +='<td>'+obj[i].unit+'</td>';
-				html +='<td>'+obj[i].quantity+'</td>';
-				html +='<td>'+obj[i].price+'</td>';
-				html +='<td>'+obj[i].total+'</td>';
-				html +='</tr>';
-			}
-		   $('#infoT tbody').html(html);
-		},error:function(){
-			
-		}	
-	});
+$(document).ready(function(){
+    $('.carousel').carousel();
+    
+  });
 </script>
