@@ -23,9 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class DiaryController {
 	
@@ -33,7 +30,6 @@ public class DiaryController {
 	
 	@Autowired
 	private DiaryService diaryService;
-	
 	
 	@RequestMapping(value = "diaryList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String diaryList(Locale locale, Model model,HttpServletRequest request) {

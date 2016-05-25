@@ -12,8 +12,24 @@
 
 	<div class="row">
 		<form class="col s12" action="/diaryInsertAction" method="post" enctype="multipart/form-data">
-			<input type="hidden" id="contactNo" name="contactNo"> <input
-				type="hidden" id="contents" name="contents">
+			<input type="hidden" id="contactNo" name="contactNo"> 
+			
+			<div class="row">
+				<div class="input-field col s10 l12 hide-on-large-only">
+					<i class="material-icons prefix">add</i> 
+					<input type="number" id="num" name="num" class="validate" maxlength="11" length="11" required="required">
+					<label for="num">거래처 번호</label>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s10 l12 hide-on-med-and-down">
+					<i class="material-icons prefix">account_circle</i> 
+					<input type="text" id="name" name="name" class="validate" maxlength="45" length="45" required="required">
+					<label for="name">거래처 명</label>
+				</div>
+			</div>
+			
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">description</i> 
