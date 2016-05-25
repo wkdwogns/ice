@@ -15,9 +15,8 @@
 				<div class="col s6 l2"><input type="text" id="eDm" name="eDm" placeholder="종료일"></div>
 				<div class="col s5 l3">
 					<select name="search">
-						<option value="" disabled selected>선택</option>
-						<option value="contactNo">거래처 번호</option>
-						<option value="name">거래처 명</option>
+						<option>선택</option>
+						<option value="title">제목</option>
 				    </select>
 			    </div>
 				<div class="col s3 l3"><input type="text" name="searchKeyword"></div>

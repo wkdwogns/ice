@@ -9,22 +9,22 @@
 		</div>
 		
 		<table class="striped centered">
-        <thead>
-          <tr>
-              <th data-field="name">자재명</th>
-              <th data-field="quantity">수량</th>
-          </tr>
-        </thead>
-
-        <tbody>
-        	<c:forEach var="material" items="${list}">
-        		<tr onclick="detail(${material.no})">
-		            <td>${material.name}</td>
-		            <td>${material.quantity}</td>
-		          </tr>
-        	</c:forEach>
-        </tbody>
-      </table>
+			<thead>
+				<tr>
+					<th data-field="name">자재명</th>
+					<th data-field="quantity">수량</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<c:forEach var="material" items="${list}">
+					<tr onclick="detail(${material.no})">
+						<td>${material.name}</td>
+						<td>${material.quantity}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </main>
 
