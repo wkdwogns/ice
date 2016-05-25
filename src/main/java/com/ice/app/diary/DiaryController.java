@@ -3,6 +3,8 @@ package com.ice.app.diary;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -51,11 +53,10 @@ public class DiaryController {
 	@RequestMapping(value = "diaryInsertAction", method = {RequestMethod.POST})
 	public String diaryInsertAction(Locale locale, Model model,HttpServletRequest request,@RequestParam("files") MultipartFile[] files) {
 		logger.info("diaryInsertAction");
-		System.out.println(param(request));
 		String fileName = null;
-    	String msg = "";
+    	String savepath = "C:/img/";
     	
-    	File saveFolder = new File("C:/img/");
+    	File saveFolder = new File(savepath);
 		if (!saveFolder.exists() || saveFolder.isFile()) {
 			saveFolder.mkdirs();
 		}
@@ -66,12 +67,20 @@ public class DiaryController {
 	                fileName = files[i].getOriginalFilename();
 	                byte[] bytes = files[i].getBytes();
 	                BufferedOutputStream buffStream = 
-	                        new BufferedOutputStream(new FileOutputStream(new File("C:/img/" + fileName)));
+	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
 	                buffStream.write(bytes);
 	                buffStream.close();
-	                msg += "You have successfully uploaded " + fileName +"<br/>";
+	                
+	                String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());  //현재시간
+	                int k = -1;
+	                k = fileName.lastIndexOf("."); // 파일 확장자 위치
+	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());  //현재시간과 확장자 합치기
+	                
+	                File oldFile = new File(savepath + fileName);
+	                File newFile = new File(savepath+realFileName); 
+	                oldFile.renameTo(newFile); // 파일명 변경
 	            } catch (Exception e) {
-	                return "You failed to upload " + fileName + ": " + e.getMessage() +"<br/>";
+	                
 	            }
     		}
         } 

@@ -29,13 +29,12 @@
 			</div>
 			
 			<div class="carousel">
-			    <a class="carousel-item" href="#one!"><img src="/img/Chrysanthemum.jpg"></a>
-			    <a class="carousel-item" href="#two!"><img src="/img/Desert.jpg"></a>
-			    <a class="carousel-item" href="#three!"><img src="/img/Koala.jpg"></a>
-			    <a class="carousel-item" href="#four!"><img src="/img/Hydrangeas.jpg"></a>
-			    <a class="carousel-item" href="#five!"><img src="/img/Jellyfish.jpg"></a>
-			  </div>
-  
+				<a class="carousel-item" href="#one!"><img src="/img/Chrysanthemum.jpg"></a>
+				<a class="carousel-item" href="#two!"><img src="/img/Desert.jpg"></a>
+				<a class="carousel-item" href="#three!"><img src="/img/Koala.jpg"></a>
+				<a class="carousel-item" href="#four!"><img src="/img/Hydrangeas.jpg"></a>
+				<a class="carousel-item" href="#five!"><img src="/img/Jellyfish.jpg"></a>
+			</div>
 		</div>
 	</div>
 </main>
