@@ -2,7 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ice.dao.DiaryDao">
    <select id="diaryList" parameterType="map" resultType="hashmap">
-   	select * from diary
+   		select 
+   			no,
+   			title,
+   			regDate 
+   		from 
+   			diary
+   		where
+   			delyn='n'
+   			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
+   				and regDate between #{sDm} and #{sDm} 
+   			</if>
+   			<if test="search == 'title'">
+				and title like CONCAT('%',#{searchKeyword},'%')
+			</if>
+   		limit
+   			#{fst},#{lst}
    </select>
    <insert id="diaryInsertAction" parameterType="map">
    	insert into diary
@@ -41,4 +56,39 @@
    		now()
    	)
    </insert>
+   <select id="diaryListCnt" parameterType="map" resultType="int">
+   		select 
+   			count(*) 
+   		from 
+   			diary
+   		where
+   			delyn='n'
+   			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
+   				and regDate between #{sDm} and #{sDm} 
+   			</if>
+   			<if test="search == 'title'">
+				and title like CONCAT('%',#{searchKeyword},'%')
+			</if>
+   </select>
+   <select id="diaryDetail" parameterType="map" resultType="hashmap">
+   		select 
+   			no,
+   			title,
+   			contents,
+   			regDate 
+   		from 
+   			diary
+   		where
+   			delyn='n'
+   			and no = #{no}
+   </select>
+   <select id="diaryImageDetail" parameterType="map" resultType="hashmap">
+   		select 
+   			virtualNm 
+   		from 
+   			images
+   		where
+   			type = #{type}
+			and readNo = #{no}
+   </select>
 </mapper>

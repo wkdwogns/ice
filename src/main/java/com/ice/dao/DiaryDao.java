@@ -11,5 +11,11 @@ public interface DiaryDao {
 	void diaryInsertAction(Map<String, Object> param);
 
 	void imageInsertAction(Map<String, Object> param);
+
+	int diaryListCnt(Map<String, Object> param);
+
+	Map<String, Object> diaryDetail(Map<String, Object> param);
+
+	List<Map<String,Object>> diaryImageDetail(Map<String, Object> param);
 	
 }

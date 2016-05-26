@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">description</i> 
-					<input type="text" id="title" name="title" class="validate" maxlength="45" length="45" value="asd" required="required">
+					<input type="text" id="title" name="title" class="validate" maxlength="45" length="45" value="${info.title}" required="required">
 					<label for="title">제목</label>
 				</div>
 			</div>
@@ -22,18 +22,16 @@
 				<div class="row">
 					<div class="input-field col s10 l12">
 						<i class="material-icons prefix">mode_edit</i>
-						<textarea id="content" name="content" class="materialize-textarea" maxlength="2000" length="2000" required="required">aspodi</textarea>
+						<textarea id="content" name="content" class="materialize-textarea" maxlength="2000" length="2000" required="required">${info.contents}</textarea>
 						<label for="content">내용</label>
 					</div>
 				</div>
 			</div>
 			
 			<div class="carousel">
-				<a class="carousel-item" href="#one!"><img src="/img/Chrysanthemum.jpg"></a>
-				<a class="carousel-item" href="#two!"><img src="/img/Desert.jpg"></a>
-				<a class="carousel-item" href="#three!"><img src="/img/Koala.jpg"></a>
-				<a class="carousel-item" href="#four!"><img src="/img/Hydrangeas.jpg"></a>
-				<a class="carousel-item" href="#five!"><img src="/img/Jellyfish.jpg"></a>
+				<c:forEach var ="image" items="${images}">
+					<a class="carousel-item" href="#one!"><img src="/img/${image.virtualNm}"></a>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

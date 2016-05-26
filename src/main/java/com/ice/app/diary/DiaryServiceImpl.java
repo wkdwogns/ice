@@ -30,5 +30,23 @@ public class DiaryServiceImpl implements DiaryService{
 		diaryDao.imageInsertAction(param);
 	}
 
+	@Override
+	public int diaryListCnt(Map<String, Object> param) {
+		
+		return diaryDao.diaryListCnt(param);
+	}
+
+	@Override
+	public Map<String, Object> diaryDetail(Map<String, Object> param) {
+		
+		return diaryDao.diaryDetail(param);
+	}
+
+	@Override
+	public List<Map<String,Object>> diaryImageDetail(Map<String, Object> param) {
+		
+		return diaryDao.diaryImageDetail(param);
+	}
+
 	
 }

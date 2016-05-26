@@ -9,17 +9,17 @@
 		</div>
 		
 		<div class="row">
-			<form id="sForm" action="/estimateList" method="post">
+			<form id="sForm" action="/diaryList" method="post">
 				<input type="hidden" id="pIndex" name="pIndex">
-				<div class="col s6 l2"><input type="text" id="sDm" name="sDm" placeholder="시작일"></div>
-				<div class="col s6 l2"><input type="text" id="eDm" name="eDm" placeholder="종료일"></div>
+				<div class="col s6 l2"><input type="text" id="sDm" name="sDm" value="${info.sDm}" placeholder="시작일"></div>
+				<div class="col s6 l2"><input type="text" id="eDm" name="eDm" value="${info.eDm}" placeholder="종료일"></div>
 				<div class="col s5 l3">
 					<select name="search">
 						<option>선택</option>
-						<option value="title">제목</option>
+						<option value="title" <c:if test="${info.search eq 'title'}">selected</c:if>>제목</option>
 				    </select>
 			    </div>
-				<div class="col s3 l3"><input type="text" name="searchKeyword"></div>
+				<div class="col s3 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
 				<div class="col s4 l2"><button class="btn right" onclick="estimateInsert()">검색</button></div>
 			</form>
 		</div>
@@ -32,12 +32,8 @@
         </thead>
 
         <tbody>
-        		<tr onclick="detail(0)">
-	          		<td>제목</td>
-		            <td>2016.05.25</td>
-				</tr>
           <c:forEach var="diary" items="${list}">
-          	<tr>
+          	<tr onclick="detail(${diary.no})">
           		<td>${diary.title}</td>
 	            <td>${diary.regDate}</td>
 			</tr>
@@ -45,8 +41,23 @@
         </tbody>
       </table>
 	</div>
+	
+	<ul class="pagination center-align">
+		<c:if test="${info.pNo ne  '1'}">
+			<li><a href='javascript:page(${info.pNo-1});'><i class="material-icons">chevron_left</i></a></li>
+		</c:if>
+		<c:forEach var="idx" begin="${info.pageStart}" end="${info.pageEnd}">
+			<c:if test="${idx == info.pNo}"><li class="active teal"><a>${idx}</a></li></c:if>
+			<c:if test="${idx != info.pNo}"><li><a href='javascript:page(${idx});'>${idx}</a></li></c:if>
+		</c:forEach>
+		<c:if test="${info.pNo ne info.pageEnd}">
+			<li class="waves-effect"><a href="javascript:page(${info.pNo+1});"><i class="material-icons">chevron_right</i></a></li>
+		</c:if>
+	</ul>
+	
 	<form id="eForm" action="" method="post">
 		<input type="hidden" id="no" name="no">
+		<input type="hidden" id="type" name="type" value="d">
 	</form>
 </main>
 <link rel="stylesheet" href="/resources/datepicker/css/bootstrap-material-datetimepicker.css">
@@ -66,5 +77,9 @@
 	}
 	function estimateInsert(){
 		location.href = '/diaryInsert';
+	}
+	function page(no){
+		$('#pIndex').val(no);
+		$('#sForm').submit();
 	}
 </script>

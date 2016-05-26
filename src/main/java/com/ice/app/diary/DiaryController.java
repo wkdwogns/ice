@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ice.app.util.Utilities;
+
 @Controller
 public class DiaryController {
 	
@@ -34,8 +36,19 @@ public class DiaryController {
 	@RequestMapping(value = "diaryList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String diaryList(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("diaryList");
-		List<Map<String,Object>> list = diaryService.diaryList(param(request));
+		
+		String pIndex = request.getParameter("pIndex");
+		if(pIndex ==null || pIndex.equals("")){pIndex = "1";}
+		
+		int tot = diaryService.diaryListCnt(param(request));
+		Utilities util = new Utilities();
+		Map<String,Object> param = util.page(10,tot,pIndex);
+		param.putAll(param(request));
+		
+		List<Map<String,Object>> list = diaryService.diaryList(param);
 		model.addAttribute("list", list);
+		model.addAttribute("info",param);
+		
 		return "diary/diaryList";
 	}
 	
@@ -97,6 +110,11 @@ public class DiaryController {
 	public String diaryDetail(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("diaryDetail");
 		System.out.println(request.getParameter("no"));
+		Map<String,Object> info = diaryService.diaryDetail(param(request));
+		
+		List<Map<String,Object>> images = diaryService.diaryImageDetail(param(request));
+		model.addAttribute("info", info);
+		model.addAttribute("images", images);
 		return "diary/diaryDetail";
 	}
 	@SuppressWarnings("unchecked")
