@@ -17,5 +17,7 @@ public interface DiaryService {
 
 	List<Map<String,Object>> diaryImageDetail(Map<String, Object> param);
 
+	void diaryDelete(Map<String, Object> param);
+
 	
 }

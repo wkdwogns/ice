@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -106,10 +107,19 @@ public class DiaryController {
 		return "redirect:/diaryList";
 	}
 	
+	
+	@RequestMapping(value = "diaryDelete/{no}", method = {RequestMethod.GET})
+	public String diaryDelete(Locale locale, Model model,@PathVariable String no) {
+		logger.info("diaryDelete");
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("no", no);
+		diaryService.diaryDelete(param);
+		
+		return "redirect:/diaryList";
+	}
 	@RequestMapping(value = "diaryDetail", method = {RequestMethod.POST})
 	public String diaryDetail(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("diaryDetail");
-		System.out.println(request.getParameter("no"));
 		Map<String,Object> info = diaryService.diaryDetail(param(request));
 		
 		List<Map<String,Object>> images = diaryService.diaryImageDetail(param(request));

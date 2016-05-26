@@ -11,7 +11,7 @@
    		where
    			delyn='n'
    			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
-   				and regDate between #{sDm} and #{sDm} 
+   				and regDate between #{sDm} and #{eDm} 
    			</if>
    			<if test="search == 'title'">
 				and title like CONCAT('%',#{searchKeyword},'%')
@@ -64,7 +64,7 @@
    		where
    			delyn='n'
    			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
-   				and regDate between #{sDm} and #{sDm} 
+   				and regDate between #{sDm} and #{eDm} 
    			</if>
    			<if test="search == 'title'">
 				and title like CONCAT('%',#{searchKeyword},'%')
@@ -91,4 +91,12 @@
    			type = #{type}
 			and readNo = #{no}
    </select>
+   <update id="diaryDelete" parameterType="map">
+   	update
+   		diary
+   	set
+   		delyn='y'
+   	where
+   		no = #{no}
+   </update>
 </mapper>

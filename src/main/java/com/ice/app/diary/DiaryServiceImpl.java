@@ -48,5 +48,10 @@ public class DiaryServiceImpl implements DiaryService{
 		return diaryDao.diaryImageDetail(param);
 	}
 
+	@Override
+	public void diaryDelete(Map<String, Object> param) {
+		diaryDao.diaryDelete(param);
+	}
+
 	
 }

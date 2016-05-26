@@ -17,5 +17,7 @@ public interface DiaryDao {
 	Map<String, Object> diaryDetail(Map<String, Object> param);
 
 	List<Map<String,Object>> diaryImageDetail(Map<String, Object> param);
+
+	void diaryDelete(Map<String, Object> param);
 	
 }
