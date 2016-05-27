@@ -18,7 +18,7 @@
 			
 			<tbody>
 				<c:forEach var="material" items="${list}">
-					<tr onclick="detail(${material.no})">
+					<tr onclick="update(${material.no})">
 						<td>${material.name}</td>
 						<td>${material.quantity}</td>
 					</tr>
@@ -29,8 +29,8 @@
 </main>
 
 <script>
-	function detail(no){
-		location.href = '/getEstimateListByNum/'+no;
+	function update(no){
+		location.href = '/materialUpdate/'+no;
 	}
 	
 	function materialInsert(){

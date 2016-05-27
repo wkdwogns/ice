@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12">
-			<h3>견적서 등록</h3>
+			<h3>자재 등록</h3>
 		</div>
 	</div>
 
@@ -28,7 +28,7 @@
 			<div class="row">
 				<div class="input-field col s10">
 					<i class="material-icons prefix">chat</i>
-					<input type="text" id="quantity" name="quantity" class="validate" maxlength="100" length="100"> 
+					<input type="text" id="comment" name="comment" class="validate" maxlength="100" length="100"> 
 					<label for="quantity">코멘트</label>
 				</div>
 			</div>

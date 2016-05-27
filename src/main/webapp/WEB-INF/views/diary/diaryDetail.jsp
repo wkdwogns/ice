@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
 	
 	<div>
@@ -31,11 +32,13 @@
 				</div>
 			</div>
 			
-			<div class="carousel">
-				<c:forEach var ="image" items="${images}">
-					<a class="carousel-item"><img src="/img/${image.virtualNm}"></a>
-				</c:forEach>
-			</div>
+			<c:if test="${fn:length(images) ne 0}">
+				<div class="carousel">
+					<c:forEach var ="image" items="${images}">
+						<a class="carousel-item"><img src="/img/${image.virtualNm}"></a>
+					</c:forEach>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </main>

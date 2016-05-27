@@ -26,5 +26,21 @@ public class MaterialServiceImpl implements MaterialService{
 	public void materialInsertAction(Map<String, Object> param) {
 		materialDao.materialInsertAction(param);
 	}
+
+	@Override
+	public Map<String, Object> materialUpdate(Map<String, Object> param) {
+		
+		return materialDao.materialUpdate(param);
+	}
+
+	@Override
+	public void materialUpdateAction(Map<String, Object> param) {
+		materialDao.materialUpdateAction(param);
+	}
+
+	@Override
+	public void materialDelete(Map<String, Object> param) {
+		materialDao.materialDelete(param);
+	}
 	
 }
