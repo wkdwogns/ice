@@ -73,6 +73,7 @@
    <select id="diaryDetail" parameterType="map" resultType="hashmap">
    		select 
    			no,
+   			contactNo,
    			title,
    			contents,
    			regDate 
@@ -84,6 +85,7 @@
    </select>
    <select id="diaryImageDetail" parameterType="map" resultType="hashmap">
    		select 
+   			no,
    			virtualNm 
    		from 
    			images
@@ -99,4 +101,42 @@
    	where
    		no = #{no}
    </update>
+   
+   <update id="diaryUpdateAction" parameterType="map">
+		update
+	   		diary
+	   	set
+	   		title=#{title},
+   			contents=#{content},
+   			modDate=now()
+	   	where
+	   		no = #{no}   	
+   </update>
+   
+   <insert id="imageUpdateAction" parameterType="map">
+   	insert into images
+   	(
+   		type,
+   		contactNo,
+   		readNo,
+   		realNm,
+   		virtualNm,
+   		regDate
+   	)
+   	values
+   	(
+   		#{type},
+   		#{contactNo},
+   		#{no},
+   		#{realNm},
+   		#{virtualNm},
+   		now()
+   	)
+   </insert>
+   <delete id="imageDelete" parameterType="map">
+   		delete 
+			from 
+				images 
+			where no = #{imageNo}
+   </delete>
 </mapper>

@@ -53,5 +53,21 @@ public class DiaryServiceImpl implements DiaryService{
 		diaryDao.diaryDelete(param);
 	}
 
+	@Override
+	public void diaryUpdateAction(Map<String, Object> param) {
+		diaryDao.diaryUpdateAction(param);
+	}
+
+	@Override
+	public void imageUpdateAction(Map<String, Object> param) {
+		diaryDao.imageUpdateAction(param);
+		
+	}
+
+	@Override
+	public void imageDelete(Map<String, Object> param) {
+		diaryDao.imageDelete(param);
+	}
+
 	
 }

@@ -94,7 +94,7 @@ public class Utilities {
 		int lst = (perpage*pNo)+perpage;
 		
 		int cntPerPage = 10; //페이징 숫자 10개씩 뿌리기
-		int pageCnt = 1;	//페이징 총개수
+		int pageCnt = listTotal/perpage;	//페이징 총개수
 		if(listTotal%perpage!=0){
 			pageCnt = (listTotal/perpage)+1;
 		}
@@ -110,7 +110,6 @@ public class Utilities {
 		param.put("pageStart",pagestart);
 		param.put("pageEnd", pageEnd );
 		param.put("pNo", PaginationNum );
-		System.out.println(fst+" "+pageEnd+" "+PaginationNum);
 		return param;
 	}
 }

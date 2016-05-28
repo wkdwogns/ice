@@ -10,7 +10,7 @@
 			</div>
 			<div class="col s6">
 				<button class="btn right red" style="margin-top: 20px;" onclick="del('${info.no}');"><i class="material-icons left">cloud</i>삭제</button>
-				<button class="btn right" style="margin-top: 20px; margin-right:10px;"><i class="material-icons left">cloud</i>수정</button>
+				<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${info.no}');"><i class="material-icons left">cloud</i>수정</button>
 			</div>
 		</div>
 		<div class="row">
@@ -52,7 +52,12 @@ $(document).ready(function(){
 	  var letitgo = confirm('삭제하시겠습니까?');
 	  if(letitgo){
 		  location.href='/diaryDelete/'+no;
-	  }
+	  }  
+  }
+  
+  function update(no){
 	  
+	location.href='/diaryUpdate/'+no;
+	   
   }
 </script>

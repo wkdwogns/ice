@@ -127,6 +127,87 @@ public class DiaryController {
 		model.addAttribute("images", images);
 		return "diary/diaryDetail";
 	}
+	
+	@RequestMapping(value = "diaryUpdate/{no}", method = {RequestMethod.GET})
+	public String diaryUpdate(Locale locale, Model model,@PathVariable String no) {
+		logger.info("diaryUpdate");
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("no", no);
+		param.put("type", "d");
+		Map<String,Object> info = diaryService.diaryDetail(param);
+		
+		List<Map<String,Object>> images = diaryService.diaryImageDetail(param);
+		model.addAttribute("updateNo", no);
+		model.addAttribute("info", info);
+		model.addAttribute("images", images);
+		return "diary/diaryUpdate";
+	}
+	
+	@RequestMapping(value = "diaryUpdateAction", method = {RequestMethod.POST})
+	public String diaryUpdateAction(Locale locale, Model model,HttpServletRequest request,@RequestParam("files") MultipartFile[] files) {
+		logger.info("diaryUpdateAction");
+		
+		diaryService.diaryUpdateAction(param(request));
+		
+		String fileName = null;
+    	String savepath = "C:/img/";
+    	
+    	File saveFolder = new File(savepath);
+		if (!saveFolder.exists() || saveFolder.isFile()) {
+			saveFolder.mkdirs();
+		}
+		
+		if (files != null && files.length >0) {
+    		for(int i =0 ;i< files.length; i++){
+	            try {
+	                fileName = files[i].getOriginalFilename();
+	                byte[] bytes = files[i].getBytes();
+	                BufferedOutputStream buffStream = 
+	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
+	                buffStream.write(bytes);
+	                buffStream.close();
+	                
+	                String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());
+	                int k = -1;
+	                k = fileName.lastIndexOf(".");
+	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
+	                
+	                File oldFile = new File(savepath + fileName);
+	                File newFile = new File(savepath+realFileName);
+	                oldFile.renameTo(newFile);
+	                
+	                Map<String,Object> param = new HashMap<String, Object>();
+	                param.put("type", "d");
+	                param.put("no",request.getParameter("no"));
+	                param.put("contactNo",request.getParameter("contactNo"));
+	                param.put("realNm",fileName);
+	                param.put("virtualNm",realFileName);
+	                diaryService.imageUpdateAction(param);
+	            } catch (Exception e) {
+	                
+	            }
+    		}
+        }
+		return "redirect:/diaryList";
+	}
+	
+	@RequestMapping(value = "imageDelete", method = {RequestMethod.POST})
+	public String imageDelete(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("imageDelete");
+
+		diaryService.imageDelete(param(request));
+		
+		String s = "c:/img/"+request.getParameter("virtualNm");
+	    File f = new File(s);
+	    if (f.delete()) {
+	      System.out.println("파일 또는 디렉토리를 성공적으로 지웠습니다: " + s);
+	    } else {
+	      System.err.println("파일 또는 디렉토리 지우기 실패: " + s);
+	    }
+	    
+		return "redirect:/diaryUpdate/"+request.getParameter("updateNo");
+	}
+	
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> param(HttpServletRequest request){
 		Map<String,Object> param = new HashMap<String, Object>();
