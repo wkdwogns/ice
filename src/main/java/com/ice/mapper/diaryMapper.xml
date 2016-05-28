@@ -16,6 +16,7 @@
    			<if test="search == 'title'">
 				and title like CONCAT('%',#{searchKeyword},'%')
 			</if>
+			order by regDate desc
    		limit
    			#{fst},#{lst}
    </select>
