@@ -1,5 +1,10 @@
 package com.ice.app.estimate;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +21,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ice.app.util.Utilities;
 
@@ -58,13 +65,19 @@ public class EstimateController {
 		
 		List<Map<String,Object>> list = estimateService.getEstimateListByNum(param);
 		model.addAttribute("list", list);
+		model.addAttribute("contactNo", no);
 		return "estimate/estimateSubList";
 	}
 	
 	@RequestMapping(value = "getDetailByNum/{no}", method = {RequestMethod.POST})
 	public String getDetailByNum(Locale locale, Model model,@PathVariable String no,HttpServletRequest request) {
 		logger.info("getDetailByNum");
+		Map<String,Object> param = new HashMap<String, Object>();
+		param.put("no", no);
+		List<Map<String,Object>> images = estimateService.diaryImageDetail(param);
+		
 		model.addAttribute("no", no);
+		model.addAttribute("images", images);
 		model.addAttribute("conDt", request.getParameter("constructionDate"));
 		return "estimate/estimateDetail";
 	}
@@ -87,9 +100,49 @@ public class EstimateController {
 	}
 	
 	@RequestMapping(value = "estimateInsertAction", method = RequestMethod.POST)
-	public String estimateInsertAction(Locale locale, Model model,HttpServletRequest request) {
+	public String estimateInsertAction(Locale locale, Model model,HttpServletRequest request,@RequestParam("files") MultipartFile[] files) {
 		logger.info("estimateInsertAction");
+		
 		estimateService.estimateInsertAction(param(request));
+		
+		String fileName = null;
+    	String savepath = "C:/img/";
+    	
+    	File saveFolder = new File(savepath);
+		if (!saveFolder.exists() || saveFolder.isFile()) {
+			saveFolder.mkdirs();
+		}
+		
+		if (files != null && files.length >0) {
+    		for(int i =0 ;i< files.length; i++){
+	            try {
+	                fileName = files[i].getOriginalFilename();
+	                byte[] bytes = files[i].getBytes();
+	                BufferedOutputStream buffStream = 
+	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
+	                buffStream.write(bytes);
+	                buffStream.close();
+	                
+	                String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());
+	                int k = -1;
+	                k = fileName.lastIndexOf(".");
+	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
+	                
+	                File oldFile = new File(savepath + fileName);
+	                File newFile = new File(savepath+realFileName);
+	                oldFile.renameTo(newFile);
+	                
+	                Map<String,Object> param = new HashMap<String, Object>();
+	                param.put("type", "e");
+	                param.put("contactNo",request.getParameter("contactNo"));
+	                param.put("realNm",fileName);
+	                param.put("virtualNm",realFileName);
+	                estimateService.imageUpdateAction(param);
+	            } catch (Exception e) {
+	                
+	            }
+    		}
+        }
 
 		return "redirect:/estimateList";
 	}
@@ -98,9 +151,9 @@ public class EstimateController {
 	public String estimateDelete(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("estimateDelete");
 		estimateService.estimateDelete(param(request));
-		String no = request.getParameter("no");
+		String contactNo = request.getParameter("contactNo");
 		String constructionDate = request.getParameter("constructionDate");
-		return "redirect:/getEstimateListByNum/"+no+"?constructionDate="+constructionDate;
+		return "redirect:/getEstimateListByNum/"+contactNo+"?constructionDate="+constructionDate;
 	}
 	
 	@SuppressWarnings("unchecked")

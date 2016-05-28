@@ -17,4 +17,8 @@ public interface EstimateService {
 
 	void estimateDelete(Map<String, Object> param);
 
+	void imageUpdateAction(Map<String, Object> param);
+
+	List<Map<String, Object>> diaryImageDetail(Map<String, Object> param);
+
 }

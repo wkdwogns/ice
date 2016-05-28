@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="row">
-		<form class="col s12" action="/estimateInsertAction" method="post" onsubmit="return fn_submit(event)">
+		<form class="col s12" action="/estimateInsertAction" method="post" enctype="multipart/form-data" onsubmit="return fn_submit(event)">
 			<input type="hidden" id="contactNo" name="contactNo">
 			<input type="hidden" id="contents" name="contents">
 			<div class="row">
@@ -67,6 +67,17 @@
 				</div>
 			</div>
 			
+			<div class="row">
+				<div class="file-field input-field col s10 l12">
+					<div class="btn">
+						<span>File</span>
+						<input type="file" id="files" name="files" multiple>
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text" placeholder="Upload one or more files">
+					</div>
+				</div>
+			</div>
 			
 			<div class="row">
 				<div class="input-field col s10 l10">
@@ -74,7 +85,6 @@
 				</div>
 				<div class="input-field col s2 l2">
 					<a class="btn-floating" href="javascript:add();"><i class="material-icons">add</i></a>
-					
 				</div>
 			</div>
 			<div id="contentList">
@@ -92,12 +102,18 @@
 						<input type="number" id="mPrice" class="validate" placeholder="가격">
 					</div>
 					<div class="input-field col s4 l2">
-						<input type="text" id="mTotal" class="validate" placeholder="합계" readonly="readonly">
-					</div>
-					
-				</div>
-				
+						<input type="text" id="mTotal" class="validate" placeholder="합계" disabled>
+					</div>					
+				</div>		
 			</div>
+			
+			<div class="row">
+				<div class="input-field col s6 l6 right-align"><h5>합계</h5></div>
+				<div class="input-field col s6 l6">
+					<input type="text"  id="total" name="total" class="validate center-align" readonly="readonly"> 
+				</div>
+			</div>
+			
 			<button class="btn waves-effect waves-light" type="submit">등록
 		    	<i class="material-icons right">send</i>
 			</button>
@@ -154,8 +170,14 @@
 	$('#rowName0').find('#mPrice').on('focusout',function(e){
 		var quantity = $('#rowName0').find('#mQuantity').val();
 		var price = $('#rowName0').find('#mPrice').val();
-		console.log(quantity+' '+price);
 		$('#rowName0 #mTotal').val(quantity*price);
+		
+		var total = 0;
+		$.each($('[id^=rowName]'),function(){
+			var val = $(this).find('#mTotal').val();
+			total +=parseInt(val);
+		});
+		$('#total').val(total);
 	});
 	
 	function add(){
@@ -185,6 +207,13 @@
 			var quantity = $('#'+id).find('#mQuantity').val();
 			var price = $('#'+id).find('#mPrice').val();
 			$('#'+id).find('#mTotal').val(quantity*price);
+			
+			var total = 0;
+			$.each($('[id^=rowName]'),function(){
+				var val = $(this).find('#mTotal').val();
+				total +=parseInt(val);
+			});
+			$('#total').val(total);
 		});
 	}
 

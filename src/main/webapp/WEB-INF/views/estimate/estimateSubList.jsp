@@ -23,6 +23,7 @@
       </table>
 	</div>
 	<form id="eForm" action="" method="post">
+		<input type="hidden" id="contactNo" name="contactNo" value="${contactNo}">
 		<input type="hidden" id="constructionDate" name="constructionDate">
 	</form>
 </main>

@@ -14,6 +14,7 @@
 	    	paymentType,
 	    	constructionDate,
 	    	contentList,
+	    	total,
 	    	title,
 	    	regDate,
 	    	regNm
@@ -30,6 +31,7 @@
     		#{paymentType},
     		#{constructionDate},
     		#{contents},
+    		#{total},
     		#{title},
     		now(),
     		'관리자'
@@ -51,6 +53,7 @@
 	<select id="getDetailByNum" parameterType="map" resultType="hashmap">
 		select
 			no,
+			contactNo,
 			estimateTitle,
 			name,
 			price_kr,
@@ -125,4 +128,35 @@
 		where
 			no = #{no}
 	</update>
+	
+	<insert id="imageUpdateAction" parameterType="map">
+		insert into images
+		   	(
+		   		type,
+		   		contactNo,
+		   		readNo,
+		   		realNm,
+		   		virtualNm,
+		   		regDate
+		   	)
+		   	values
+		   	(
+		   		#{type},
+		   		#{contactNo},
+		   		(SELECT no FROM estimate order by no desc limit 1),
+		   		#{realNm},
+		   		#{virtualNm},
+		   		now()
+		   	)
+	</insert>
+	<select id="diaryImageDetail" parameterType="map" resultType="hashmap">
+   		select 
+   			no,
+   			virtualNm 
+   		from 
+   			images
+   		where
+   			type = 'e'
+			and readNo = #{no}
+   </select>
 </mapper>
