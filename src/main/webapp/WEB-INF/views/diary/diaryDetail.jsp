@@ -9,11 +9,11 @@
 				<h4 id="estimateTitle"></h4>
 			</div>
 			<div class="col s6">
-				<button class="btn right red" style="margin-top: 20px;" onclick="del('${info.no}');"><i class="material-icons left">cloud</i>삭제</button>
+				<button class="btn right red" style="margin-top: 20px; margin-right:10px;" onclick="del('${info.no}');"><i class="material-icons left">cloud</i>삭제</button>
 				<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${info.no}');"><i class="material-icons left">cloud</i>수정</button>
 			</div>
 		</div>
-		<div class="row">
+		
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">description</i> 
@@ -39,7 +39,7 @@
 					</c:forEach>
 				</div>
 			</c:if>
-		</div>
+		
 	</div>
 </main>
 <script>

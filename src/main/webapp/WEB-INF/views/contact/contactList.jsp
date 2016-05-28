@@ -12,7 +12,7 @@
 			<c:forEach var="contact" items="${list}">
 				<li class="collection-item avatar" >
 					<i class="material-icons circle" onclick="goList(${contact.no})">folder</i>
-					<span class="title">${contact.name}</span>
+					<span class="title">${contact.no}.${contact.name}</span>
 					<p class="ellip">
 						<i class="material-icons">phone</i>${contact.tel}<br> 
 						<i class="material-icons">email</i>${contact.email}<br>

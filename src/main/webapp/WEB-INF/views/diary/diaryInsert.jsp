@@ -97,6 +97,10 @@
 		if(e.keyCode==13){e.preventDefault();} 
 	});
 	
+	$('#num').on('focusout',function(e){
+		$('#contactNo').val( $(this).val() );
+	});
+	
 	function fn_submit(){
 		var contactNo = $('#contactNo').val();
 		if(contactNo=='' || contactNo==null){
