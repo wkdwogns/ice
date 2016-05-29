@@ -29,7 +29,7 @@
 				<div class="input-field col s10">
 					<i class="material-icons prefix">chat</i>
 					<input type="text" id="comment" name="comment" class="validate" maxlength="100" length="100"> 
-					<label for="quantity">코멘트</label>
+					<label for="comment">코멘트</label>
 				</div>
 			</div>
 			

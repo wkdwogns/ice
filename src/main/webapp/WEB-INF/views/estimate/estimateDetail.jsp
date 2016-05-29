@@ -8,7 +8,7 @@
 		</div>
 		<div class="col s6">
 			<button class="btn right red" style="margin-top: 20px; margin-right:10px;" onclick="del('${no}','${conDt}');"><i class="material-icons left">cloud</i>삭제</button>
-			<button class="btn right" style="margin-top: 20px; margin-right:10px;"><i class="material-icons left">cloud</i>수정</button>
+			<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${no}');"><i class="material-icons left">cloud</i>수정</button>
 		</div>
 	</div>
 	<div class="row">
@@ -60,7 +60,7 @@
 </main>
 <script>
 	$(document).ready(function(){
-    	$('.carousel').carousel();
+    	$('.carousel').carousel({dist:0});
   	});
 	function del(no,d){
 		var letitgo = confirm('정말로 삭세하시겠습니까?');
@@ -70,6 +70,12 @@
 			$('#eForm').attr('action','/estimateDelete/');
 			$('#eForm').submit();
 		}
+	}
+	
+	function update(no){
+		$('#no').val(no);
+		$('#eForm').attr('action','/estimateUpdate/');
+		$('#eForm').submit();	
 	}
 	
 	$.ajax({

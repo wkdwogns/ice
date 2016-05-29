@@ -76,7 +76,11 @@
 	<select id="estimateList" parameterType="map" resultType="hashmap">
 		select
 			contactNo,
-			name,
+			case
+				when name='mobile' then (select name from contacts where no = contactNo)
+                when name='' then (select name from contacts where no = contactNo)
+                else name
+			end name,
 			constructionDate
 		from
 			estimate
@@ -92,6 +96,7 @@
 				and name like CONCAT('%',#{searchKeyword},'%')
 			</if>
 		group by contactNo,constructionDate
+		order by regDate desc
 		limit
 			#{fst},#{lst}
 	</select>
@@ -159,4 +164,21 @@
    			type = 'e'
 			and readNo = #{no}
    </select>
+   <update id="estimateUpdateAction" parameterType="map">
+   	update
+   		estimate
+   	set
+   		estimateTitle=#{estimateTitle},
+		price_kr=#{price_kr},
+		validity=#{validity},
+		deliveryDate=#{deliveryDate},
+		deliveryPlace=#{deliveryPlace},
+		paymentType=#{paymentType},
+		contentList=#{contents}, 
+		title=#{title},
+		total=#{total},
+		modDate =now()
+	where
+		no = #{no}
+   </update>
 </mapper>

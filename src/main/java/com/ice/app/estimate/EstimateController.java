@@ -156,6 +156,59 @@ public class EstimateController {
 		return "redirect:/getEstimateListByNum/"+contactNo+"?constructionDate="+constructionDate;
 	}
 	
+	@RequestMapping(value = "estimateUpdate", method = RequestMethod.POST)
+	public String estimateUpdate(Locale locale,Model model,HttpServletRequest request) {
+		logger.info("estimateUpdate");
+		
+		List<Map<String,Object>> images = estimateService.diaryImageDetail(param(request));
+		model.addAttribute("images", images);
+		model.addAttribute("no", request.getParameter("no"));
+		return "estimate/estimateUpdate";
+	}
+	
+	@RequestMapping(value = "estimateUpdateAction", method = RequestMethod.POST)
+	public String estimateUpdateAction(Locale locale, Model model,HttpServletRequest request,@RequestParam("files") MultipartFile[] files) {
+		logger.info("estimateUpdateAction");
+		
+		estimateService.estimateUpdateAction(param(request));
+		
+		String fileName = null;
+    	String savepath = "C:/img/";
+    	
+		if (files != null && files.length >0) {
+    		for(int i =0 ;i< files.length; i++){
+	            try {
+	                fileName = files[i].getOriginalFilename();
+	                byte[] bytes = files[i].getBytes();
+	                BufferedOutputStream buffStream = 
+	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
+	                buffStream.write(bytes);
+	                buffStream.close();
+	                
+	                String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());
+	                int k = -1;
+	                k = fileName.lastIndexOf(".");
+	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
+	                
+	                File oldFile = new File(savepath + fileName);
+	                File newFile = new File(savepath+realFileName);
+	                oldFile.renameTo(newFile);
+	                
+	                Map<String,Object> param = new HashMap<String, Object>();
+	                param.put("type", "e");
+	                param.put("contactNo",request.getParameter("contactNo"));
+	                param.put("realNm",fileName);
+	                param.put("virtualNm",realFileName);
+	                estimateService.imageUpdateAction(param);
+	            } catch (Exception e) {
+	                
+	            }
+    		}
+        }
+
+		return "redirect:/getDetailByNum/"+request.getParameter("no");
+	}
+	
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> param(HttpServletRequest request){
 		Map<String,Object> param = new HashMap<String, Object>();

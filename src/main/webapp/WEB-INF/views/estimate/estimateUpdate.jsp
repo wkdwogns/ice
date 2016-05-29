@@ -5,35 +5,25 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12">
-			<h3>견적서 등록</h3>
+			<h3>견적서 수정</h3>
 		</div>
 	</div>
 
 	<div class="row">
-		<form class="col s12" action="/estimateInsertAction" method="post" enctype="multipart/form-data" onsubmit="return fn_submit(event)">
+		<form class="col s12" action="/estimateUpdateAction" method="post" enctype="multipart/form-data" onsubmit="return fn_submit()">
+			<input type="hidden" id="no" name="no" value="${no}">
 			<input type="hidden" id="contactNo" name="contactNo">
 			<input type="hidden" id="contents" name="contents">
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">description</i>
 					<input type="text" id="estimateTitle" name="estimateTitle" class="validate" maxlength="45" length="45" required="required"> 
-					<label for="estimateTitle">견적서 명</label>
 				</div>
 			</div>
-			
 			<div class="row">
-				<div class="input-field col s10 l12 hide-on-large-only">
-					<i class="material-icons prefix">add</i> 
-					<input type="number" id="num" name="num" class="validate" maxlength="11" length="11">
-					<label for="num">거래처 번호</label>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="input-field col s10 l12 hide-on-med-and-down">
+				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">account_circle</i>
-					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50"> 
-					<label for="name">거래처 명</label>
+					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50" readonly="readonly"> 
 				</div>
 			</div>
 			
@@ -41,12 +31,12 @@
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">payment</i>
 					<input type="text"  id="price_kr" name="price_kr" class="validate" maxlength="50" length="50"> 
-					<label for="price_kr">금액 한글</label>
+					
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
-					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20" required="required"> 
-					<label for="constructionDate">시공일</label>
+					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20" readonly="readonly"> 
+					
 				</div>
 			</div>
 			
@@ -54,12 +44,12 @@
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="number"  id="validity" name="validity" class="validate" maxlength="10" length="10"> 
-					<label for="validity">견적 유효기간</label>
+					
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="number"  id="deliveryDate" name="deliveryDate" class="validate" maxlength="10" length="10"> 
-					<label for="deliveryDate">납품기한</label>
+					
 				</div>
 			</div>
 			
@@ -67,12 +57,12 @@
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">room</i>
 					<input type="text"  id="deliveryPlace" name="deliveryPlace" class="validate" maxlength="40" length="40"> 
-					<label for="deliveryPlace">납품장소</label>
+					
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">payment</i>
 					<input type="text"  id="paymentType" name="paymentType" class="validate" maxlength="20" length="20"> 
-					<label for="paymentType">대금 지불조건</label>
+					
 				</div>
 			</div>
 			
@@ -111,7 +101,7 @@
 						<input type="number" id="mPrice" class="validate" placeholder="가격">
 					</div>
 					<div class="input-field col s4 l2">
-						<input type="text" id="mTotal" class="validate" placeholder="합계" readonly="readonly" style="font-size:medium; color: black;">
+						<input type="text" id="mTotal" class="validate" placeholder="합계" readonly="readonly" style="font-size:medium;color: black;">
 					</div>					
 				</div>		
 			</div>
@@ -119,59 +109,19 @@
 			<div class="row">
 				<div class="input-field col s6 l6 right-align"><h5>합계</h5></div>
 				<div class="input-field col s6 l6">
-					<input type="text"  id="total" name="total" class="validate center-align" value="0" readonly="readonly" style="font-size:xx-large;color: black;"> 
+					<input type="text"  id="total" name="total" class="validate center-align" readonly="readonly" style="font-size:xx-large;color: black;"> 
 				</div>
 			</div>
 			
-			<button class="btn waves-effect waves-light" type="submit">등록
+			<button class="btn waves-effect waves-light" type="submit">수정
 		    	<i class="material-icons right">send</i>
 			</button>
 		</form>
 	</div>
 </div>
 </main>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-<script src="/resources/datepicker/js/moment.js"></script>
-              
-<link rel="stylesheet" href="/resources/datepicker/css/bootstrap-material-datetimepicker.css">
-<script src="/resources/datepicker/js/bootstrap-material-datetimepicker.js"></script>
 
 <script>
-	var availableTags = [];
-	
-	$('#constructionDate').bootstrapMaterialDatePicker({
-		lang : 'ko',
-		weekStart : 0, 
-		time: false
-	});
-	
-	$.ajax({
-		url:'/contactListAjax',
-		data:{ 'temp' : '' },
-		type: "post",
-		dataType :'json',
-		success:function(data){
-			$.each(data, function( index, value ) {
-				var obj = {};
-				obj.value = data[index].name;
-				obj.no = data[index].no;
-				availableTags.push(obj);
-			});	
-			console.log(availableTags[0]);
-			$( "#name" ).autocomplete({
-		      source: availableTags,
-		      select: function( event, ui ) {
-		          $("#contactNo").val( ui.item.no ); 
-		          return false;
-		        }
-		    });
-		},error:function(){
-			
-		}	
-	});
-	
 	$('input').on('keydown',function(e){
 		if(e.keyCode==13){e.preventDefault();} 
 	});
@@ -205,7 +155,7 @@
 						'<input type="number" id="mPrice" class="validate" placeholder="가격">'+
 					'</div>'+
 					'<div class="input-field col s4 l2">'+
-						'<input type="text" id="mTotal" class="validate" placeholder="합계" readonly="readonly">'+
+						'<input type="text" id="mTotal" class="validate" placeholder="합계" readonly="readonly" style="font-size:midium;color: black;">'+
 					'</div>'+
 					'<div class="input-field col s4 l1">'+
 						'<a class="btn-floating" href="javascript:remove('+id+');"><i class="material-icons">remove</i></a>'+
@@ -228,9 +178,15 @@
 
 	function remove(id){
 		$(id).remove();
+		var total = 0;
+		$.each($('[id^=rowName]'),function(){
+			var val = $(this).find('#mTotal').val();
+			total +=parseInt(val);
+		});
+		$('#total').val(total);
 	}
  
-	function fn_submit(e){
+	function fn_submit(){
 		if($('#contactNo').val() ==''||$('#contactNo').val()==null){
 			alert('거래처명을 입력해주세요');
 			return false;
@@ -249,9 +205,65 @@
 		
 		return true;
 	}
-	$('#num').on('focusout',function(e){
-		$('#contactNo').val( $(this).val() );
-		$('#name').val( 'mobile' );
+	
+	$.ajax({
+		url:'/getDetailByNumAjax',
+		data:{ 'no' : '${no}' },
+		type: "post",
+		dataType :'json',
+		success:function(data){
+			$('#estimateTitle').val(data.estimateTitle);
+			$('#name').val(data.name);
+			$('#price_kr').val(data.price_kr);
+			$('#validity').val(data.validity);
+			$('#deliveryDate').val(data.deliveryDate);
+			$('#deliveryPlace').val(data.deliveryPlace);
+			$('#paymentType').val(data.paymentType);
+			$('#constructionDate').val(data.constructionDate);
+			$('#contactNo').val(data.contactNo);
+			$('#total').val(data.total);
+			$('#title').val(data.title);
+			var obj = jQuery.parseJSON( data.contentList );
+			var html = '';
+			for(i in obj){
+				var id = 'rowName'+i;
+				html +='<div id="'+id+'" class="row">'+
+				'<div class="input-field col s7 l4">'+
+					'<input type="text" id="mName" class="validate" value="'+obj[i].name+'" placeholder="자재명">'+
+				'</div>'+
+				'<div class="input-field col s3 l2">'+
+					'<input type="text" id="mUnit" class="validate" value="'+obj[i].unit+'" placeholder="단위">'+
+				'</div>'+
+				'<div class="input-field col s2 l1">'+
+					'<input type="number" id="mQuantity" class="validate" value="'+obj[i].quantity+'" placeholder="수량">'+
+				'</div>'+
+				'<div class="input-field col s4 l2">'+
+					'<input type="number" id="mPrice" class="validate" value="'+obj[i].price+'" placeholder="가격">'+
+				'</div>'+
+				'<div class="input-field col s4 l2">'+
+					'<input type="text" id="mTotal" class="validate" value="'+obj[i].total+'" placeholder="합계" readonly="readonly" style="font-size:midium;color: black;">'+
+				'</div>'+
+				'<div class="input-field col s4 l1">'+
+					'<a class="btn-floating" href="javascript:remove('+id+');"><i class="material-icons">remove</i></a>'+
+				'</div>'+
+			'</div>';
+			}
+		   $('#contentList').html(html);
+		   $(id+' > #mQuantity,#mPrice').on('focusout',function(e){
+				var quantity = $('#'+id).find('#mQuantity').val();
+				var price = $('#'+id).find('#mPrice').val();
+				$('#'+id).find('#mTotal').val(quantity*price);
+				
+				var total = 0;
+				$.each($('[id^=rowName]'),function(){
+					var val = $(this).find('#mTotal').val();
+					total +=parseInt(val);
+				});
+				$('#total').val(total);
+			});
+		},error:function(){
+			
+		}	
 	});
 	
   </script>

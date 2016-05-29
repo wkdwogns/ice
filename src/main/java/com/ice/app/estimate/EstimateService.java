@@ -21,4 +21,6 @@ public interface EstimateService {
 
 	List<Map<String, Object>> diaryImageDetail(Map<String, Object> param);
 
+	void estimateUpdateAction(Map<String, Object> param);
+
 }

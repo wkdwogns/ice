@@ -15,9 +15,21 @@
     </select>
     <insert id="contactInsertAction" parameterType="map">
     	insert into contacts
-    	(name,tel,address,email,comment)
+    		(
+    		name,
+    		tel,
+    		address,
+    		email,
+    		comment,
+    		regDate)
     	values
-    	(#{name},#{tel},#{address},#{email},#{comment})
+    		(
+    		#{name},
+    		#{tel},
+    		#{address},
+    		#{email},
+    		#{comment},
+    		now())
     </insert>
     
     <select id="contactUpdate" parameterType="map" resultType="hashmap">

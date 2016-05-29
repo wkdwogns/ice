@@ -54,5 +54,10 @@ public class EstimateServiceImpl implements EstimateService{
 	public List<Map<String, Object>> diaryImageDetail(Map<String, Object> param) {
 		return estimateDao.diaryImageDetail(param);
 	}
+
+	@Override
+	public void estimateUpdateAction(Map<String, Object> param) {
+		estimateDao.estimateUpdateAction(param);
+	}
 	
 }
