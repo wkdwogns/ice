@@ -17,6 +17,7 @@
 					<select name="search">
 						<option>선택</option>
 						<option value="title" <c:if test="${info.search eq 'title'}">selected</c:if>>제목</option>
+						<option value="name" <c:if test="${info.search eq 'name'}">selected</c:if>>거레처명</option>
 				    </select>
 			    </div>
 				<div class="col s3 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
@@ -26,6 +27,7 @@
 		<table class="striped centered">
         <thead>
 			<tr>
+				<th data-field="title">거래처</th>
 				<th data-field="title">제목</th>
 			    <th data-field="regDate">작성일</th>
 			</tr>
@@ -34,6 +36,7 @@
         <tbody>
           <c:forEach var="diary" items="${list}">
           	<tr onclick="detail(${diary.no})">
+          		<td>${diary.name}</td>
           		<td>${diary.title}</td>
 	            <td>${diary.regDate}</td>
 			</tr>

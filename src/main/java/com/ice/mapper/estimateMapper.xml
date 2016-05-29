@@ -23,7 +23,7 @@
     		(
     		#{estimateTitle},
     		#{contactNo},
-    		#{name},
+    		(select name from contacts where no=#{contactNo}),
     		#{price_kr},
     		#{validity},
     		#{deliveryDate},

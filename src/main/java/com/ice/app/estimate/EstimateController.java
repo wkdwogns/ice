@@ -63,6 +63,8 @@ public class EstimateController {
 		param.putAll(param(request));
 		List<Map<String,Object>> list = estimateService.estimateList(param);
 		model.addAttribute("list", list);
+		List<Map<String,Object>> diaryList = diaryService.diaryList(param);
+		model.addAttribute("diaryList", diaryList);
 		model.addAttribute("info", param);
 		return "estimate/estimateList";
 	}

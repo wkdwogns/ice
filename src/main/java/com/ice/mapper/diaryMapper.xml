@@ -3,20 +3,29 @@
 <mapper namespace="com.ice.dao.DiaryDao">
    <select id="diaryList" parameterType="map" resultType="hashmap">
    		select 
-   			no,
-   			title,
-   			regDate 
+   			d.no,
+   			d.contactNo,
+   			d.title,
+   			d.regDate,
+   			c.name 
    		from 
-   			diary
+   			diary d,contacts c
    		where
-   			delyn='n'
+   			d.delyn='n'
+   			and d.contactNo = c.no
    			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
-   				and regDate between #{sDm} and #{eDm} 
+   				and d.regDate between #{sDm} and #{eDm} 
    			</if>
    			<if test="search == 'title'">
-				and title like CONCAT('%',#{searchKeyword},'%')
+				and d.title like CONCAT('%',#{searchKeyword},'%')
 			</if>
-			order by regDate desc
+			<if test="search == 'contactNo'">
+				and d.contactNo = #{searchKeyword}
+			</if>
+			<if test="search == 'name'">
+				and c.name like CONCAT('%',#{searchKeyword},'%')
+			</if>
+			order by d.regDate desc
    		limit
    			#{fst},#{lst}
    </select>

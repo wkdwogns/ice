@@ -57,9 +57,36 @@
 			<li class="waves-effect"><a href="javascript:page(${info.pNo+1});"><i class="material-icons">chevron_right</i></a></li>
 		</c:if>
 	</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col s6"><h2>일지</h2></div>
+		</div>
+		<table class="striped centered">
+	        <thead>
+				<tr>
+					<th data-field="title">거래처명</th>
+					<th data-field="title">제목</th>
+				    <th data-field="regDate">작성일</th>
+				</tr>
+	        </thead>
 	
+	        <tbody>
+	          <c:forEach var="diary" items="${diaryList}">
+	          	<tr onclick="diaryDetail(${diary.no})">
+	          		<td>${diary.name}</td>
+	          		<td>${diary.title}</td>
+		            <td>${diary.regDate}</td>
+				</tr>
+	          </c:forEach>
+	        </tbody>
+	    </table>
+	</div>
+	
+      
 	<form id="eForm" action="" method="post">
+		<input type="hidden" id="no" name="no">
 		<input type="hidden" id="constructionDate" name="constructionDate">
+		<input type="hidden" id="type" name="type" value="d">
 	</form>
 </main>
 <link rel="stylesheet" href="/resources/datepicker/css/bootstrap-material-datetimepicker.css">
@@ -83,5 +110,10 @@
 	function page(no){
 		$('#pIndex').val(no);
 		$('#sForm').submit();
+	}
+	function diaryDetail(no){
+		$('#no').val(no);
+		$('#eForm').attr('action','/diaryDetail');
+		$('#eForm').submit();
 	}
 </script>
