@@ -23,19 +23,19 @@
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">account_circle</i>
-					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50" readonly="readonly"> 
+					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50" readonly="readonly" placeholder="거래처명"> 
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">payment</i>
-					<input type="text"  id="price_kr" name="price_kr" class="validate" maxlength="50" length="50"> 
+					<input type="text"  id="price_kr" name="price_kr" class="validate" maxlength="50" length="50" placeholder="금액한글"> 
 					
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
-					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20" readonly="readonly"> 
+					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20" placeholder="시공일" readonly="readonly"> 
 					
 				</div>
 			</div>
@@ -43,12 +43,12 @@
 			<div class="row">
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
-					<input type="number"  id="validity" name="validity" class="validate" maxlength="10" length="10"> 
+					<input type="number"  id="validity" name="validity" placeholder="유효기간" class="validate" maxlength="10" length="10"> 
 					
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
-					<input type="number"  id="deliveryDate" name="deliveryDate" class="validate" maxlength="10" length="10"> 
+					<input type="number"  id="deliveryDate" name="deliveryDate" placeholder="납품일자" class="validate" maxlength="10" length="10"> 
 					
 				</div>
 			</div>
@@ -56,12 +56,12 @@
 			<div class="row">
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">room</i>
-					<input type="text"  id="deliveryPlace" name="deliveryPlace" class="validate" maxlength="40" length="40"> 
+					<input type="text"  id="deliveryPlace" name="deliveryPlace" placeholder="납품장소" class="validate" maxlength="40" length="40"> 
 					
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">payment</i>
-					<input type="text"  id="paymentType" name="paymentType" class="validate" maxlength="20" length="20"> 
+					<input type="text"  id="paymentType" name="paymentType" placeholder="지불조건" class="validate" maxlength="10" length="10"> 
 					
 				</div>
 			</div>
@@ -118,6 +118,49 @@
 			</button>
 		</form>
 	</div>
+	
+	<div class="row">
+		<div class="col s10 l12">
+			<table class="bordered">
+				<thead>
+					<tr>
+						<th data-field="title">파일명</th>
+					    <th data-field="regDate">삭제</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="image" items="${images}"  varStatus="status">
+					<tr>
+						<td>
+							<a id="image_${status.index }">${image.virtualNm}</a>
+						</td>
+					    <td><button class="btn red" type="button" onclick="del('${image.no}','${image.virtualNm}')">삭제 <i class="material-icons right">send</i></button></td>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<div class="row">
+				<div class="col s12">
+					<img id="modalImg" class="responsive-img" src="">
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">close</a>
+		</div>
+	</div>
+	
+	<form id="eForm" action="" method="post">
+		<input type="hidden" id="no" name="no" value="${no }">
+		<input type="hidden" id="imageNo" name="imageNo">
+		<input type="hidden" id=virtualNm name="virtualNm">
+	</form>
 </div>
 </main>
 
@@ -266,4 +309,15 @@
 		}	
 	});
 	
+	$('[id^=image_]').on('click',function(){
+		  $('#modalImg').attr('src', '/img/'+$('#'+this.id).text() );
+		  $('#modal1').openModal();
+	  });
+	
+	function del(no,nm){
+		$('#imageNo').val(no);
+		$('#virtualNm').val(nm);
+		$('#eForm').attr('action','/estimateImageDelete');
+		$('#eForm').submit();
+	}
   </script>

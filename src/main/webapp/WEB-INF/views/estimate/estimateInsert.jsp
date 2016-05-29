@@ -71,7 +71,7 @@
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">payment</i>
-					<input type="text"  id="paymentType" name="paymentType" class="validate" maxlength="20" length="20"> 
+					<input type="text"  id="paymentType" name="paymentType" class="validate" maxlength="10" length="10"> 
 					<label for="paymentType">대금 지불조건</label>
 				</div>
 			</div>

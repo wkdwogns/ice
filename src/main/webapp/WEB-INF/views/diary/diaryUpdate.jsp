@@ -106,6 +106,7 @@
 		}
 		return true;
 	}
+	
 	function del(no,nm){
 		$('#imageNo').val(no);
 		$('#virtualNm').val(nm);

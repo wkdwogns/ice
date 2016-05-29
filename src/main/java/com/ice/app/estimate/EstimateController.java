@@ -2,8 +2,11 @@ package com.ice.app.estimate;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -13,6 +16,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ice.app.diary.DiaryService;
 import com.ice.app.util.Utilities;
 
 
@@ -38,6 +46,9 @@ public class EstimateController {
 	
 	@Autowired
 	private EstimateService estimateService;
+	
+	@Autowired
+	private DiaryService diaryService;
 	
 	@RequestMapping(value = "estimateList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String estimateList(Locale locale, Model model,HttpServletRequest request) {
@@ -69,7 +80,7 @@ public class EstimateController {
 		return "estimate/estimateSubList";
 	}
 	
-	@RequestMapping(value = "getDetailByNum/{no}", method = {RequestMethod.POST})
+	@RequestMapping(value = "getDetailByNum/{no}", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getDetailByNum(Locale locale, Model model,@PathVariable String no,HttpServletRequest request) {
 		logger.info("getDetailByNum");
 		Map<String,Object> param = new HashMap<String, Object>();
@@ -156,7 +167,7 @@ public class EstimateController {
 		return "redirect:/getEstimateListByNum/"+contactNo+"?constructionDate="+constructionDate;
 	}
 	
-	@RequestMapping(value = "estimateUpdate", method = RequestMethod.POST)
+	@RequestMapping(value = "estimateUpdate", method = {RequestMethod.GET,RequestMethod.POST})
 	public String estimateUpdate(Locale locale,Model model,HttpServletRequest request) {
 		logger.info("estimateUpdate");
 		
@@ -207,6 +218,28 @@ public class EstimateController {
         }
 
 		return "redirect:/getDetailByNum/"+request.getParameter("no");
+	}
+	
+	@RequestMapping(value = "estimateImageDelete", method = {RequestMethod.POST})
+	public String estimateimageDelete(Locale locale, Model model,HttpServletRequest request) {
+		logger.info("estimateImageDelete");
+
+		diaryService.imageDelete(param(request));
+		
+		String s = "c:/img/"+request.getParameter("virtualNm");
+	    File f = new File(s);
+	    if (f.delete()) {
+	      System.out.println("파일 또는 디렉토리를 성공적으로 지웠습니다: " + s);
+	    } else {
+	      System.err.println("파일 또는 디렉토리 지우기 실패: " + s);
+	    }
+	    
+		return "redirect:/estimateUpdate?no="+request.getParameter("no");
+	}
+	
+	@RequestMapping(value = "downloadExcel", method = {RequestMethod.GET})
+	public void downLoadExcel(Locale locale, Model model,HttpServletRequest request) throws FileNotFoundException {
+		
 	}
 	
 	@SuppressWarnings("unchecked")
