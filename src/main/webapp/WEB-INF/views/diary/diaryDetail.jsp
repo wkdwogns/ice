@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
 	
-	<div>
+	<div class="container">
 		<div class="row">
 			<div class="col s6">
 				<h4 id="estimateTitle"></h4>
@@ -16,21 +16,21 @@
 		
 			<div class="row">
 				<div class="input-field col s10 l12">
-					<i class="material-icons prefix">description</i> 
-					<input type="text" id="title" name="title" class="validate" maxlength="45" length="45" value="${info.title}" required="required">
-					<label for="title">제목</label>
+					<h5>제목</h5>
+					<p>${info.title}</p>
+					
 				</div>
 			</div>
 
+			
 			<div class="row">
-				<div class="row">
-					<div class="input-field col s10 l12">
-						<i class="material-icons prefix">mode_edit</i>
-						<textarea id="content" name="content" class="materialize-textarea" maxlength="2000" length="2000" required="required">${info.contents}</textarea>
-						<label for="content">내용</label>
-					</div>
+				<div class="input-field col s10 l12">
+					<h5>내용</h5>
+					<p class="light italic">${info.contents}</p>
+					
 				</div>
 			</div>
+		
 			
 			<c:if test="${fn:length(images) ne 0}">
 				<div class="carousel">

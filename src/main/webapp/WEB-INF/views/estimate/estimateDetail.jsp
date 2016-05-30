@@ -67,7 +67,7 @@
 					<table id="infoT" class="bordered">
 				        <thead>
 				          <tr>
-				              <th data-field="name" class="grey-text">자재명</th>
+				              <th data-field="name">자재명</th>
 				              <th data-field="unit">단위</th>
 				              <th data-field="price">수량</th>
 				              <th data-field="quantity">가격</th>
@@ -137,7 +137,7 @@
 			$('#validity').text('유효기간: '+data.validity+'일');
 			$('#deliveryDate').text('납품기간: '+data.deliveryDate+'일');
 			$('#deliveryPlace').text('납품장소: '+data.deliveryPlace);
-			$('#paymentType').text('지불조건: '+data.paymentType);
+			$('#paymentType').text('지불조건:'+data.paymentType);
 			$('#constructionDate').text('날짜:'+data.constructionDate);
 			
 			$('#contactNo').val(data.contactNo);
