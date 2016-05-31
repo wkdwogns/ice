@@ -231,9 +231,9 @@ public class EstimateController {
 		String s = "c:/img/"+request.getParameter("virtualNm");
 	    File f = new File(s);
 	    if (f.delete()) {
-	      System.out.println("ÆÄÀÏ ¶Ç´Â µð·ºÅä¸®¸¦ ¼º°øÀûÀ¸·Î Áö¿ü½À´Ï´Ù: " + s);
+	      System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½: " + s);
 	    } else {
-	      System.err.println("ÆÄÀÏ ¶Ç´Â µð·ºÅä¸® Áö¿ì±â ½ÇÆÐ: " + s);
+	      System.err.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + s);
 	    }
 	    
 		return "redirect:/estimateUpdate?no="+request.getParameter("no");
@@ -254,5 +254,15 @@ public class EstimateController {
 			param.put(name, request.getParameter(name));
 		}
 		return param;
+	}
+	
+	@RequestMapping("excel")
+	public String excelTransform(Map<String,Object> ModelMap) throws Exception{
+	List<Object> excelList= null;
+	      //excelList = service.getAllObjects(target);
+	            
+	   ModelMap.put("excelList", "1");
+	      ModelMap.put("target", "2");
+	      return "excelView";
 	}
 }
