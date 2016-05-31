@@ -17,7 +17,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><a href="/excel">asd</a></td>
+					<td></td>
 					<td>${material.quantity}</td>
 				</tr>
 			</tbody>

@@ -79,6 +79,7 @@ public class EstimateController {
 		List<Map<String,Object>> list = estimateService.getEstimateListByNum(param);
 		model.addAttribute("list", list);
 		model.addAttribute("contactNo", no);
+		model.addAttribute("constructionDate", request.getParameter("constructionDate") );
 		return "estimate/estimateSubList";
 	}
 	
@@ -231,17 +232,12 @@ public class EstimateController {
 		String s = "c:/img/"+request.getParameter("virtualNm");
 	    File f = new File(s);
 	    if (f.delete()) {
-	      System.out.println("���� �Ǵ� ���丮�� ���������� �������ϴ�: " + s);
+	      System.out.println("삭제 성공: " + s);
 	    } else {
-	      System.err.println("���� �Ǵ� ���丮 ����� ����: " + s);
+	      System.err.println("삭제 실패: " + s);
 	    }
 	    
 		return "redirect:/estimateUpdate?no="+request.getParameter("no");
-	}
-	
-	@RequestMapping(value = "downloadExcel", method = {RequestMethod.GET})
-	public void downLoadExcel(Locale locale, Model model,HttpServletRequest request) throws FileNotFoundException {
-		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -256,13 +252,13 @@ public class EstimateController {
 		return param;
 	}
 	
-	@RequestMapping("excel")
-	public String excelTransform(Map<String,Object> ModelMap) throws Exception{
-	List<Object> excelList= null;
-	      //excelList = service.getAllObjects(target);
-	            
-	   ModelMap.put("excelList", "1");
-	      ModelMap.put("target", "2");
-	      return "excelView";
+	@RequestMapping(value ="excel",method = {RequestMethod.GET})
+	public String excelTransform(Model model,HttpServletRequest request){
+		logger.info("excelTransform");
+		
+		List<Map<String,Object>> list = estimateService.getEstimateListByNum(param(request));
+	    model.addAttribute("list", list);
+	    
+		return "excelView";
 	}
 }
