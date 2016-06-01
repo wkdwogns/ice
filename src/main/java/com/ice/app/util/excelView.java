@@ -23,18 +23,19 @@ public class excelView extends AbstractExcelView {
 		List<Map<String, Object>> excelName = (List<Map<String, Object>>) model.get("list");
 
 		HSSFSheet worksheet = workbook.createSheet("WorkSheet");
-		HSSFSheet worksheet1 = workbook.createSheet("WorkSheet1");
-		HSSFSheet worksheet2 = workbook.createSheet("WorkSheet2");
-		HSSFSheet worksheet3 = workbook.createSheet("WorkSheet3");
-		HSSFSheet worksheet4 = workbook.createSheet("WorkSheet4");
-
+		
 		worksheet.addMergedRegion(new CellRangeAddress(0, 0, 1, 5));
 		worksheet.addMergedRegion(new CellRangeAddress(1, 1, 1, 5));
-		/*worksheet.addMergedRegion(new CellRangeAddress(2, 2, 1, 4));
-		worksheet.addMergedRegion(new CellRangeAddress(3, 3, 1, 4));
-		worksheet.addMergedRegion(new CellRangeAddress(4, 4, 1, 4));
-		worksheet.addMergedRegion(new CellRangeAddress(5, 5, 1, 4));
-		worksheet.addMergedRegion(new CellRangeAddress(6, 6, 1, 4));*/
+		worksheet.addMergedRegion(new CellRangeAddress(2, 2, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(3, 3, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(4, 4, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(5, 5, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(6, 6, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(7, 7, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(8, 8, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(9,9, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(10,10, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(11,11, 2, 5));
 		
 		worksheet.setColumnWidth(0,500);
 		worksheet.setColumnWidth(1,12000);
@@ -48,10 +49,25 @@ public class excelView extends AbstractExcelView {
 		HSSFRow row6 = worksheet.createRow(6);
 		HSSFRow row7 = worksheet.createRow(7);
 		HSSFRow row8 = worksheet.createRow(8);
+		HSSFRow row9 = worksheet.createRow(9);
 		HSSFRow row10 = worksheet.createRow(10);
+		HSSFRow row11 = worksheet.createRow(11);
+		HSSFRow row12 = worksheet.createRow(12);
+		HSSFRow row13 = worksheet.createRow(13);
 		
 		row0.setHeight((short)200);
 		row1.setHeight((short)500);
+		row2.setHeight((short)500);
+		row3.setHeight((short)500);
+		row4.setHeight((short)500);
+		row5.setHeight((short)500);
+		row6.setHeight((short)500);
+		row7.setHeight((short)500);
+		row8.setHeight((short)500);
+		row9.setHeight((short)400);
+		row10.setHeight((short)400);
+		row11.setHeight((short)400);
+		row11.setHeight((short)400);
 		
 		row1.createCell(1).setCellValue("견적서");
 		row2.createCell(1).setCellValue("성심 송이사님 귀하");
@@ -62,11 +78,23 @@ public class excelView extends AbstractExcelView {
 		row7.createCell(1).setCellValue("대금지급조건 : 현금(협의)");
 		row8.createCell(1).setCellValue("시    공     일 : 2013 년 12 월 24 일");
 		
-		row10.createCell(1).setCellValue("품명");
-		row10.createCell(2).setCellValue("단위");
-		row10.createCell(3).setCellValue("수량");
-		row10.createCell(4).setCellValue("단가");
-		row10.createCell(5).setCellValue("금액");
+		row2.createCell(2).setCellValue("한국냉동설비");
+		row3.createCell(2).setCellValue("경기도 김포시 고촌읍 신곡리 1006-2");
+		row4.createCell(2).setCellValue("TEL : 02-2695-7172");
+		row5.createCell(2).setCellValue("H.P : 010-5276-1236");
+		row6.createCell(2).setCellValue("FAX : 031-986-7372");
+		row7.createCell(2).setCellValue("대표 : 최 호 묵");
+		row8.createCell(2).setCellValue("<농.수.축산물 냉동 시공 전문업체>");
+		row9.createCell(2).setCellValue("※저온창고 냉동기  ※저장유통냉동기");
+		row10.createCell(2).setCellValue("※급속동결냉동기 ※냉동응용기기");
+		row11.createCell(2).setCellValue("<방열문.조립식냉동냉장고 제조업체>\n※전동방열문  ※조립식냉동냉장고");
+		row12.createCell(2).setCellValue("※전동방열문  ※조립식냉동냉장고");
+		
+		row13.createCell(1).setCellValue("품명");
+		row13.createCell(2).setCellValue("단위");
+		row13.createCell(3).setCellValue("수량");
+		row13.createCell(4).setCellValue("단가");
+		row13.createCell(5).setCellValue("금액");
 		
 
 		response.setContentType("Application/Msexcel");
