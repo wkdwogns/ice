@@ -1,6 +1,5 @@
 package com.ice.app.util;
 
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
@@ -86,15 +84,16 @@ public class excelView extends AbstractExcelView {
 		style.setAlignment(style.ALIGN_CENTER);
 		style.setVerticalAlignment(style.VERTICAL_CENTER);
 		
+		HSSFCellStyle style1 = workbook.createCellStyle();
+		style1.setFont(font);
+		style1.setAlignment(style.ALIGN_CENTER);
+		style1.setVerticalAlignment(style.VERTICAL_CENTER);
 		
 		
-		
-		HSSFCell cell = row1.createCell(1);      
+		HSSFCell cell = row1.createCell(1);
 		cell.setCellValue("견적서");
 		cell.setCellStyle(style);
-		//row1.createCell(1).setCellStyle(style);
-		//row1.createCell(1).setCellValue("견적서");
-
+		
 		row2.createCell(1).setCellValue("성심 송이사님 귀하");
 		row3.createCell(1).setCellValue("금액 : 이백 삼십 오만 칠천 오백 원정");
 		row4.createCell(1).setCellValue("견적유효기간 : 20일");
@@ -103,7 +102,10 @@ public class excelView extends AbstractExcelView {
 		row7.createCell(1).setCellValue("대금지급조건 : 현금(협의)");
 		row8.createCell(1).setCellValue("시    공     일 : 2013 년 12 월 24 일");
 		
-		row2.createCell(2).setCellValue("한국냉동설비");
+		HSSFCell cell2 = row2.createCell(2);
+		cell2.setCellValue("한국냉동설비");
+		cell2.setCellStyle(style1);
+		
 		row3.createCell(2).setCellValue("경기도 김포시 고촌읍 신곡리 1006-2");
 		row4.createCell(2).setCellValue("TEL : 02-2695-7172");
 		row5.createCell(2).setCellValue("H.P : 010-5276-1236");
@@ -120,7 +122,6 @@ public class excelView extends AbstractExcelView {
 		row15.createCell(3).setCellValue("수량");
 		row15.createCell(4).setCellValue("단가");
 		row15.createCell(5).setCellValue("금액");
-		
 
 		response.setContentType("Application/Msexcel");
 		response.setHeader("Content-Disposition", "ATTachment; Filename=excel.xls");
