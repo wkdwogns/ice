@@ -7,9 +7,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
@@ -72,7 +77,24 @@ public class excelView extends AbstractExcelView {
 		row14.setHeight((short)500);
 		row15.setHeight((short)500);
 		
-		row1.createCell(1).setCellValue("견적서");
+		HSSFFont font = workbook.createFont();		
+		font.setFontHeight((short)250);
+		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		
+		HSSFCellStyle style = workbook.createCellStyle();
+		style.setFont(font);
+		style.setAlignment(style.ALIGN_CENTER);
+		style.setVerticalAlignment(style.VERTICAL_CENTER);
+		
+		
+		
+		
+		HSSFCell cell = row1.createCell(1);      
+		cell.setCellValue("견적서");
+		cell.setCellStyle(style);
+		//row1.createCell(1).setCellStyle(style);
+		//row1.createCell(1).setCellValue("견적서");
+
 		row2.createCell(1).setCellValue("성심 송이사님 귀하");
 		row3.createCell(1).setCellValue("금액 : 이백 삼십 오만 칠천 오백 원정");
 		row4.createCell(1).setCellValue("견적유효기간 : 20일");
