@@ -12,6 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
@@ -39,9 +40,12 @@ public class excelView extends AbstractExcelView {
 		worksheet.addMergedRegion(new CellRangeAddress(9,9, 2, 5));
 		worksheet.addMergedRegion(new CellRangeAddress(10,10, 2, 5));
 		worksheet.addMergedRegion(new CellRangeAddress(11,11, 2, 5));
+		worksheet.addMergedRegion(new CellRangeAddress(12,12, 1, 5));	
 		worksheet.addMergedRegion(new CellRangeAddress(14,14, 1, 5));
+		
 		worksheet.setColumnWidth(0,500);
 		worksheet.setColumnWidth(1,11000);
+		worksheet.setColumnWidth(4,3000);
 		
 		HSSFRow row0 = worksheet.createRow(0);
 		HSSFRow row1 = worksheet.createRow(1);
@@ -60,7 +64,7 @@ public class excelView extends AbstractExcelView {
 		HSSFRow row15 = worksheet.createRow(15);
 		
 		row0.setHeight((short)200);
-		row1.setHeight((short)500);
+		row1.setHeight((short)800);
 		row2.setHeight((short)500);
 		row3.setHeight((short)500);
 		row4.setHeight((short)500);
@@ -76,31 +80,43 @@ public class excelView extends AbstractExcelView {
 		row15.setHeight((short)500);
 		
 		HSSFFont font = workbook.createFont();		
-		font.setFontHeight((short)250);
+		font.setFontHeight((short)500);
 		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		
+		HSSFFont font1 = workbook.createFont();		
+		font1.setFontHeight((short)250);
+		font1.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		
+		HSSFFont font2 = workbook.createFont();		
+		font1.setFontHeight((short)350);
 		
 		HSSFCellStyle style = workbook.createCellStyle();
 		style.setFont(font);
-		style.setAlignment(style.ALIGN_CENTER);
-		style.setVerticalAlignment(style.VERTICAL_CENTER);
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 		
 		HSSFCellStyle style1 = workbook.createCellStyle();
-		style1.setFont(font);
-		style1.setAlignment(style.ALIGN_CENTER);
-		style1.setVerticalAlignment(style.VERTICAL_CENTER);
+		style1.setFont(font1);
+		style1.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		
+		HSSFCellStyle style2 = workbook.createCellStyle();
+		style2.setFont(font2);
+		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		style2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+		style2.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
+		style2.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 		
 		HSSFCell cell = row1.createCell(1);
 		cell.setCellValue("견적서");
 		cell.setCellStyle(style);
 		
-		row2.createCell(1).setCellValue("성심 송이사님 귀하");
-		row3.createCell(1).setCellValue("금액 : 이백 삼십 오만 칠천 오백 원정");
-		row4.createCell(1).setCellValue("견적유효기간 : 20일");
-		row5.createCell(1).setCellValue("납  품  기  한 : 20일");
-		row6.createCell(1).setCellValue("납  품  장  소 : 20일");
-		row7.createCell(1).setCellValue("대금지급조건 : 현금(협의)");
-		row8.createCell(1).setCellValue("시    공     일 : 2013 년 12 월 24 일");
+		row3.createCell(1).setCellValue("성심 송이사님 귀하");
+		row4.createCell(1).setCellValue("금액 : 이백 삼십 오만 칠천 오백 원정");
+		row5.createCell(1).setCellValue("견적유효기간 : 20일");
+		row6.createCell(1).setCellValue("납  품  기  한 : 20일");
+		row7.createCell(1).setCellValue("납  품  장  소 : 20일");
+		row8.createCell(1).setCellValue("대금지급조건 : 현금(협의)");
+		row9.createCell(1).setCellValue("시    공     일 : 2013 년 12 월 24 일");
 		
 		HSSFCell cell2 = row2.createCell(2);
 		cell2.setCellValue("한국냉동설비");
@@ -117,11 +133,22 @@ public class excelView extends AbstractExcelView {
 		row11.createCell(2).setCellValue("<방열문.조립식냉동냉장고 제조업체>");
 		row12.createCell(2).setCellValue("※전동방열문 ※조립식냉동냉장고");
 		row14.createCell(1).setCellValue("냉장고 제목");
-		row15.createCell(1).setCellValue("품명");
-		row15.createCell(2).setCellValue("단위");
-		row15.createCell(3).setCellValue("수량");
-		row15.createCell(4).setCellValue("단가");
-		row15.createCell(5).setCellValue("금액");
+		
+		HSSFCell cell3 = row15.createCell(1);
+		cell3.setCellValue("품명");
+		cell3.setCellStyle(style2);
+		HSSFCell cell4 = row15.createCell(2);
+		cell4.setCellValue("단위");
+		cell4.setCellStyle(style2);
+		HSSFCell cell5 = row15.createCell(3);
+		cell5.setCellValue("수량");
+		cell5.setCellStyle(style2);
+		HSSFCell cell6 = row15.createCell(4);
+		cell6.setCellValue("단가");
+		cell6.setCellStyle(style2);
+		HSSFCell cell7 = row15.createCell(5);
+		cell7.setCellValue("금액");
+		cell7.setCellStyle(style2);
 
 		response.setContentType("Application/Msexcel");
 		response.setHeader("Content-Disposition", "ATTachment; Filename=excel.xls");
