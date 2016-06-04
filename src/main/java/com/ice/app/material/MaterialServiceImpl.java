@@ -42,5 +42,11 @@ public class MaterialServiceImpl implements MaterialService{
 	public void materialDelete(Map<String, Object> param) {
 		materialDao.materialDelete(param);
 	}
+
+	@Override
+	public int materialListCnt(Map<String, Object> param) {
+		
+		return materialDao.materialListCnt(param);
+	}
 	
 }

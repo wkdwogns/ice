@@ -15,5 +15,7 @@ public interface MaterialDao {
 
 	void materialDelete(Map<String, Object> param);
 
+	int materialListCnt(Map<String, Object> param);
+
 	
 }

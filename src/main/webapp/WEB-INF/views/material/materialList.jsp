@@ -8,6 +8,22 @@
 			<div class="col s6"><button class="waves-effect waves-light btn-large right" style="margin-top: 20px;" onclick="materialInsert()"><i class="material-icons left">cloud</i>등록</button></div>
 		</div>
 		
+		<div class="row">
+			<form id="sForm" action="/materialList" method="post">
+				<input type="hidden" id="pIndex" name="pIndex">
+				<%-- <div class="col s6 l2"><input type="text" id="sDm" name="sDm" value="${info.sDm}" placeholder="시작일"></div>
+				<div class="col s6 l2"><input type="text" id="eDm" name="eDm" value="${info.eDm}" placeholder="종료일"></div> --%>
+				<div class="col s5 l7">
+					<select name="search">
+						<option>선택</option>
+						<option value="name" <c:if test="${info.search eq 'name'}">selected</c:if>>자재 명</option>
+				    </select>
+			    </div>
+				<div class="col s3 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
+				<div class="col s4 l2"><button type="submit" class="btn right">검색</button></div>
+			</form>
+		</div>
+		
 		<table class="striped centered">
 			<thead>
 				<tr>
@@ -26,14 +42,34 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<ul class="pagination center-align">
+		<c:if test="${info.pNo ne  '1'}">
+			<li><a href='javascript:page(${info.pNo-1});'><i class="material-icons">chevron_left</i></a></li>
+		</c:if>
+		<c:forEach var="idx" begin="${info.pageStart}" end="${info.pageEnd}">
+			<c:if test="${idx == info.pNo}"><li class="active teal"><a>${idx}</a></li></c:if>
+			<c:if test="${idx != info.pNo}"><li><a href='javascript:page(${idx});'>${idx}</a></li></c:if>
+		</c:forEach>
+		<c:if test="${info.pNo ne info.pageEnd}">
+			<li class="waves-effect"><a href="javascript:page(${info.pNo+1});"><i class="material-icons">chevron_right</i></a></li>
+		</c:if>
+	</ul>
+	
 </main>
 
 <script>
+	$('select').material_select();
 	function update(no){
 		location.href = '/materialUpdate/'+no;
 	}
 	
 	function materialInsert(){
 		location.href = '/materialInsert';
+	}
+	
+	function page(no){
+		$('#pIndex').val(no);
+		$('#sForm').submit();
 	}
 </script>

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ice.app.util.Utilities;
+
 /**
  * Handles requests for the application home page.
  */
@@ -31,8 +33,17 @@ public class ContactController {
 	@RequestMapping(value = "contactList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String contactList(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("contactList");
-		List<Map<String,Object>> list = contactService.contactList(param(request));
+		String pIndex = request.getParameter("pIndex");
+		if(pIndex ==null || pIndex.equals("")){pIndex = "1";}
+		
+		int tot = contactService.contactListCnt(param(request));
+		Utilities util = new Utilities();
+		Map<String,Object> param = util.page(100,tot,pIndex);
+		param.putAll(param(request));
+		
+		List<Map<String,Object>> list = contactService.contactList(param);
 		model.addAttribute("list", list);
+		model.addAttribute("info", param);
 		return "contact/contactList";
 	}
 	

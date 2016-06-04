@@ -10,6 +10,12 @@
 			materials
 		where
 			delyn='n'
+			<if test="search == 'name'">
+				and name like CONCAT('%',#{searchKeyword},'%')
+			</if>
+		order by regDate desc
+		limit
+			#{fst},#{lst}
 	</select>
 	<insert id="materialInsertAction" parameterType="map">
 		insert into materials
@@ -55,4 +61,17 @@
 		where
 			no = #{no}
 	</update>
+	
+	<select id="materialListCnt" parameterType="map" resultType="int">
+		select 
+			count(*)
+		from 
+			materials
+		where
+			delyn='n'
+			<if test="search == 'name'">
+				and name like CONCAT('%',#{searchKeyword},'%')
+			</if>
+	</select>
+
 </mapper>

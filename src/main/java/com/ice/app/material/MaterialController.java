@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ice.app.util.Utilities;
+
 /**
  * Handles requests for the application home page.
  */
@@ -31,8 +33,17 @@ public class MaterialController {
 	@RequestMapping(value = "materialList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String materialList(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("materialList");
-		List<Map<String,Object>> list = materialService.materialList(param(request));
+		String pIndex = request.getParameter("pIndex");
+		if(pIndex ==null || pIndex.equals("")){pIndex = "1";}
+		
+		int tot = materialService.materialListCnt(param(request));
+		Utilities util = new Utilities();
+		Map<String,Object> param = util.page(10,tot,pIndex);
+		param.putAll(param(request));
+		
+		List<Map<String,Object>> list = materialService.materialList(param);
 		model.addAttribute("list", list);
+		model.addAttribute("info", param);
 		return "material/materialList";
 	}
 	

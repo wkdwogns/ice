@@ -202,13 +202,8 @@ public class excelView extends AbstractExcelView {
 					cellTotal2.setCellStyle(style3);
 				}
 			}
-			
 		}
-		
-		
-
 		response.setContentType("Application/Msexcel");
 		response.setHeader("Content-Disposition", "ATTachment; Filename=excel.xls");
 	}
-
 }

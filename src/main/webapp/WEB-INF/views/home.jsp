@@ -7,21 +7,5 @@
 			Hello world!  
 		</h1>
 		<P>  The time on the server is ${serverTime}. </P>
-		<p>현 재고량</p>
-		<table class="centered">
-			<thead>
-				<tr>
-					<th data-field="name">자재명</th>
-					<th data-field="quantity">수량</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td>${material.quantity}</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
-	
 </main>

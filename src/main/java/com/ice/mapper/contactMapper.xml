@@ -12,7 +12,26 @@
     		contacts
     	where
     		delyn='n'
+    		<if test="search == 'name'">
+				and name like CONCAT('%',#{searchKeyword},'%')
+			</if>
+    	order by regDate desc
+		limit
+			#{fst},#{lst}
     </select>
+    
+    <select id="contactListCnt" parameterType="map" resultType="int">
+		select 
+			count(*)
+		from 
+			contacts
+		where
+			delyn='n'
+			<if test="search == 'name'">
+				and name like CONCAT('%',#{searchKeyword},'%')
+			</if>
+	</select>
+	
     <insert id="contactInsertAction" parameterType="map">
     	insert into contacts
     		(

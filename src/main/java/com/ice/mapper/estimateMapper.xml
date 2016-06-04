@@ -96,7 +96,7 @@
 				and name like CONCAT('%',#{searchKeyword},'%')
 			</if>
 		group by contactNo,constructionDate
-		order by regDate desc
+		order by constructionDate desc
 		limit
 			#{fst},#{lst}
 	</select>

@@ -14,5 +14,7 @@ public interface ContactDao {
 	void contactUpdateAction(Map<String, Object> param);
 
 	void contactDelete(Map<String, Object> param);
+
+	int contactListCnt(Map<String, Object> param);
 	
 }

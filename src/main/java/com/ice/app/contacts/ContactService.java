@@ -15,5 +15,7 @@ public interface ContactService {
 
 	void contactDelete(Map<String, Object> param);
 
+	int contactListCnt(Map<String, Object> param);
+
 
 }
