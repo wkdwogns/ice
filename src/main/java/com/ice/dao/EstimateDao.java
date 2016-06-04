@@ -23,5 +23,7 @@ public interface EstimateDao {
 
 	void estimateUpdateAction(Map<String, Object> param);
 
+	List<Map<String, Object>> excelTransform(Map<String, Object> param);
+
 	
 }

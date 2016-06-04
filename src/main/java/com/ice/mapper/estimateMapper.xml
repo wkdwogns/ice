@@ -181,4 +181,28 @@
 	where
 		no = #{no}
    </update>
+   
+   <select id="excelTransform" parameterType="map" resultType="hashmap">
+   		select
+			no,
+			contactNo,
+			estimateTitle,
+			name,
+			price_kr,
+			validity,
+			deliveryDate,
+			deliveryPlace,
+			paymentType,
+			constructionDate,
+			contentList, 
+			title,
+			total,
+			regDate
+		from
+			estimate 
+		where
+			delyn = 'n'
+			and contactNo = #{contactNo}
+			and constructionDate = #{constructionDate}
+   </select>
 </mapper>

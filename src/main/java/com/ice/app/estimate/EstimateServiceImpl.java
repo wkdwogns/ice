@@ -59,5 +59,11 @@ public class EstimateServiceImpl implements EstimateService{
 	public void estimateUpdateAction(Map<String, Object> param) {
 		estimateDao.estimateUpdateAction(param);
 	}
+
+	@Override
+	public List<Map<String, Object>> excelTransform(Map<String, Object> param) {
+
+		return estimateDao.excelTransform(param);
+	}
 	
 }

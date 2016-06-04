@@ -256,8 +256,8 @@ public class EstimateController {
 	public String excelTransform(Model model,HttpServletRequest request){
 		logger.info("excelTransform");
 		
-		//List<Map<String,Object>> list = estimateService.getEstimateListByNum(param(request));
-	    //model.addAttribute("list", list);
+		List<Map<String,Object>> list = estimateService.excelTransform(param(request));
+	    model.addAttribute("list", list);
 	    
 		return "excelView";
 	}
