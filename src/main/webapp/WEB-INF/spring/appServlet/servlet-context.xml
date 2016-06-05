@@ -87,4 +87,7 @@
  
 	<beans:bean name="excelView" class="com.ice.app.util.excelView"/>
 	
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
 </beans:beans>

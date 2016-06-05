@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ice.dao.UserDao">
+   <select id="findUserInfo" parameterType="string" resultType="com.ice.app.login.UserVo">
+    	SELECT 
+    		*
+    	FROM 
+    		users
+    	WHERE username=#{username}
+    </select>
+    
+    <select id="loadPermission" parameterType="string" resultType="hashmap">
+    	SELECT 
+    		username,
+    		role
+    	FROM 
+    		user_roles
+    	WHERE username=#{username}
+    </select>
+</mapper>

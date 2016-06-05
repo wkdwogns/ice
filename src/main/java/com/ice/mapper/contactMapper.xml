@@ -80,4 +80,17 @@
     	where 
     		no = #{no}
     </update>
+    <select id="contactListAjax" parameterType="map" resultType="hashmap">
+    	select 
+    		no,
+    		name,
+    		tel,
+    		address,
+    		email
+    	from 
+    		contacts
+    	where
+    		delyn='n'
+    </select>
+    
 </mapper>

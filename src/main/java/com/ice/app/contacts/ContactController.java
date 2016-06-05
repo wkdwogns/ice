@@ -87,7 +87,7 @@ public class ContactController {
 	@ResponseBody
 	public List<Map<String,Object>> contactListAjax(Locale locale, Model model,HttpServletRequest request) {
 		logger.info("contactListAjax");
-		List<Map<String,Object>> list = contactService.contactList(param(request));
+		List<Map<String,Object>> list = contactService.contactListAjax(param(request));
 		return list;
 	}
 	

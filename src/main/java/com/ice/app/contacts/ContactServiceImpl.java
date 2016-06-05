@@ -46,4 +46,10 @@ public class ContactServiceImpl implements ContactService{
 		return contactDao.contactListCnt(param);
 	}
 
+	@Override
+	public List<Map<String, Object>> contactListAjax(Map<String, Object> param) {
+		
+		return contactDao.contactListAjax(param);
+	}
+
 }

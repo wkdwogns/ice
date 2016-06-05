@@ -2,11 +2,8 @@ package com.ice.app.estimate;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -16,10 +13,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -232,9 +225,9 @@ public class EstimateController {
 		String s = "c:/img/"+request.getParameter("virtualNm");
 	    File f = new File(s);
 	    if (f.delete()) {
-	      System.out.println("삭제 성공: " + s);
+	      System.out.println("�궘�젣 �꽦怨�: " + s);
 	    } else {
-	      System.err.println("삭제 실패: " + s);
+	      System.err.println("�궘�젣 �떎�뙣: " + s);
 	    }
 	    
 		return "redirect:/estimateUpdate?no="+request.getParameter("no");

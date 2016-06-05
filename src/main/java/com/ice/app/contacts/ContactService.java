@@ -17,5 +17,7 @@ public interface ContactService {
 
 	int contactListCnt(Map<String, Object> param);
 
+	List<Map<String, Object>> contactListAjax(Map<String, Object> param);
+
 
 }

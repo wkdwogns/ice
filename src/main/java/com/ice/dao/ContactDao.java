@@ -16,5 +16,7 @@ public interface ContactDao {
 	void contactDelete(Map<String, Object> param);
 
 	int contactListCnt(Map<String, Object> param);
+
+	List<Map<String, Object>> contactListAjax(Map<String, Object> param);
 	
 }

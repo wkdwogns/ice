@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<http pattern="/resources/**" security="none"/>
+	
+	<http use-expressions="true">
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/**" access="hasRole('ROLE_MANAGER')" />
+		<intercept-url pattern="/favicon.ico" access="permitAll" />
+
+		<form-login login-page="/" username-parameter="username" password-parameter="password" default-target-url="/contactList" authentication-failure-url="/?error=true"/> 
+		<logout logout-success-url="/"/> 
+	</http>
+	
+	<beans:bean id="CustomUserDetailsService" class="com.ice.app.login.CustomUserDetailsService"/>
+	<authentication-manager>
+		<authentication-provider user-service-ref="CustomUserDetailsService"></authentication-provider>
+		<!-- <authentication-provider>
+            <user-service>
+                <user name="bill"  password="abc123"  authorities="ROLE_USER" />
+                <user name="admin" password="root123" authorities="ROLE_ADMIN" />
+                <user name="dba"   password="root123" authorities="ROLE_ADMIN,ROLE_DBA" />
+            </user-service>
+        </authentication-provider> -->
+	</authentication-manager>
+</beans:beans>
