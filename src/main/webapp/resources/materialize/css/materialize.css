@@ -2653,7 +2653,7 @@ ul.browser-default {
 }
 
 a {
-  color: #039be5;
+  color: #2196f3;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -3200,7 +3200,7 @@ td, th {
 
 .secondary-content {
   float: right;
-  color: #26a69a;
+  color: #2196f3;
 }
 
 .collapsible .collection {

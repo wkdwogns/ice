@@ -10,7 +10,7 @@
 			      <form class="login-form" action="/j_spring_security_check" method="post">
 			        <div class="row">
 			          <div class="input-field col s12">
-			            <p class="center">한국냉동설비</p>
+			            <h5 class="center">한국냉동설비</h5>
 			          </div>
 			        </div>
 			        <div class="row">

@@ -17,14 +17,14 @@
 					<li><a href="/j_spring_security_logout">로그아웃</a></li>
 				</sec:authorize>
 			</ul>
-			<ul id="sideBar" class="side-nav  blue" >
+			<ul id="sideBar" class="side-nav" >
 				<!-- <li><a href="/" class="white-text">홈</a></li> -->
-				<li><a href="/contactList" class="white-text">거래처 관리</a></li>
-				<li><a href="/estimateList" class="white-text">견적서 관리</a></li>
-				<li><a href="/materialList" class="white-text">자재관리</a></li>
-				<li><a href="/diaryList" class="white-text">일지</a></li>
+				<li><a href="/contactList" class="blue-text">거래처 관리</a></li>
+				<li><a href="/estimateList" class="blue-text">견적서 관리</a></li>
+				<li><a href="/materialList" class="blue-text">자재관리</a></li>
+				<li><a href="/diaryList" class="blue-text">일지</a></li>
 				<sec:authorize access="isAuthenticated()">
-					<li><a class="white-text" href="/j_spring_security_logout">로그아웃</a></li>
+					<li><a class="blue-text" href="/j_spring_security_logout">로그아웃</a></li>
 				</sec:authorize>
 			</ul>
 		</div>

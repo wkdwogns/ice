@@ -51,7 +51,7 @@
 			<li><a href='javascript:page(${info.pNo-1});'><i class="material-icons">chevron_left</i></a></li>
 		</c:if>
 		<c:forEach var="idx" begin="${info.pageStart}" end="${info.pageEnd}">
-			<c:if test="${idx == info.pNo}"><li class="active teal"><a>${idx}</a></li></c:if>
+			<c:if test="${idx == info.pNo}"><li class="active blue"><a>${idx}</a></li></c:if>
 			<c:if test="${idx != info.pNo}"><li><a href='javascript:page(${idx});'>${idx}</a></li></c:if>
 		</c:forEach>
 		<c:if test="${info.pNo ne info.pageEnd}">
