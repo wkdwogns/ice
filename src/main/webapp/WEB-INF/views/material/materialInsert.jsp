@@ -14,6 +14,13 @@
 			<div class="row">
 				<div class="input-field col s10">
 					<i class="material-icons prefix">shopping_cart</i>
+					<input type="text" id="category" name="category" class="validate" maxlength="45" length="45" required="required"> 
+					<label for="category">분류</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s10">
+					<i class="material-icons prefix">shopping_cart</i>
 					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50" required="required"> 
 					<label for="name">자재 명</label>
 				</div>

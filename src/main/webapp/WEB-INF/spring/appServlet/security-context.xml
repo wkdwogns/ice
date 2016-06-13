@@ -14,7 +14,7 @@
 	<http use-expressions="true">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_MANAGER')" />
-		<intercept-url pattern="/favicon.ico" access="permitAll" />
+		<intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
 
 		<form-login login-page="/" username-parameter="username" password-parameter="password" default-target-url="/contactList" authentication-failure-url="/?error=true"/> 
 		<logout logout-success-url="/"/> 

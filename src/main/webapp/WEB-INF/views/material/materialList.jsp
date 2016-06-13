@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s6"><h3>자재</h3></div>
-			<div class="col s6"><button class="waves-effect waves-light btn-large right" style="margin-top: 20px;" onclick="materialInsert()"><i class="material-icons left">cloud</i>등록</button></div>
+			<div class="col s6"><button class="waves-effect waves-light btn-large right" style="margin-top: 20px;" onclick="materialInsert()">자재등록</button></div>
 		</div>
 		
 		<div class="row">
@@ -17,6 +17,7 @@
 					<select name="search">
 						<option>선택</option>
 						<option value="name" <c:if test="${info.search eq 'name'}">selected</c:if>>자재 명</option>
+						<option value="category" <c:if test="${info.search eq 'category'}">selected</c:if>>분류</option>
 				    </select>
 			    </div>
 				<div class="col s3 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
@@ -24,9 +25,10 @@
 			</form>
 		</div>
 		
-		<table class="striped centered">
+		<table class="striped centered highlight">
 			<thead>
 				<tr>
+					<th data-field="category">분류</th>
 					<th data-field="name">자재명</th>
 					<th data-field="quantity">수량</th>
 				</tr>
@@ -35,6 +37,7 @@
 			<tbody>
 				<c:forEach var="material" items="${list}">
 					<tr onclick="update(${material.no})">
+						<td>${material.category}</td>
 						<td>${material.name}</td>
 						<td>${material.quantity}</td>
 					</tr>

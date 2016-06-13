@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s6"><h3>거래처</h3></div>
-			<div class="col s6"><button class="waves-effect waves-light btn-large right" style="margin-top: 20px;" onclick="contactInsert()"><i class="material-icons left">cloud</i>등록</button></div>
+			<div class="col s6"><button class="waves-effect waves-light btn-large right" style="margin-top: 20px;" onclick="contactInsert()">거래처등록</button></div>
 		</div>
 		
 		<div class="row">

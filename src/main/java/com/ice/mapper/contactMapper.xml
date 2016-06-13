@@ -39,6 +39,7 @@
     		tel,
     		address,
     		email,
+    		buisness,
     		comment,
     		regDate)
     	values
@@ -47,6 +48,7 @@
     		#{tel},
     		#{address},
     		#{email},
+    		#{buisness},
     		#{comment},
     		now())
     </insert>
@@ -67,6 +69,7 @@
     		tel=#{tel},
     		address=#{address},
     		email=#{email},
+    		buisness=#{buisness},
     		comment=#{comment}
     	where 
     		no = #{no}

@@ -25,6 +25,14 @@
 			<div class="row">
 				<div class="input-field col s10 l12 hide-on-med-and-down">
 					<i class="material-icons prefix">account_circle</i> 
+					<input type="text" id="conDt" name="conDt" class="validate" maxlength="45" length="45">
+					<label for="name">시공일</label>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s10 l12 hide-on-med-and-down">
+					<i class="material-icons prefix">account_circle</i> 
 					<input type="text" id="name" name="name" class="validate" maxlength="45" length="45">
 					<label for="name">거래처 명</label>
 				</div>
@@ -65,7 +73,18 @@
 </main>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="/resources/datepicker/js/moment.js"></script>
+              
+<link rel="stylesheet" href="/resources/datepicker/css/bootstrap-material-datetimepicker.css">
+<script src="/resources/datepicker/js/bootstrap-material-datetimepicker.js"></script>
 <script>
+	$('#conDt').bootstrapMaterialDatePicker({
+		lang : 'ko',
+		weekStart : 0, 
+		time: false
+	});
+
 	var availableTags = [];
 
 	$.ajax({

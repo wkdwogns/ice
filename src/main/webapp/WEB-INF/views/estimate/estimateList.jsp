@@ -4,8 +4,8 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col s6"><h2>견적서</h2></div>
-			<div class="col s6"><button class="btn right" style="margin-top:20px;" onclick="estimateInsert()"><i class="material-icons left">cloud</i>등록</button></div>
+			<div class="col s6"><h3>견적서</h3></div>
+			<div class="col s6"><button class="btn-large right" style="margin-top:20px;" onclick="estimateInsert()">견적서등록</button></div>
 		</div>
 		
 		<div class="row">
@@ -24,7 +24,7 @@
 				<div class="col s4 l2"><button type="submit" class="btn right">검색</button></div>
 			</form>
 		</div>
-		<table class="bordered centered">
+		<table class="striped centered highlight">
         <thead>
 			<tr>
 				<th data-field="contactNo">거래처 번호</th>

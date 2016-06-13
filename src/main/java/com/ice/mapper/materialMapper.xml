@@ -4,6 +4,7 @@
 	<select id="materialList" parameterType="map" resultType="hashmap">
 		select 
 			no,
+			category,
 			name,
 			quantity
 		from 
@@ -13,6 +14,9 @@
 			<if test="search == 'name'">
 				and name like CONCAT('%',#{searchKeyword},'%')
 			</if>
+			<if test="search == 'category'">
+				and category like CONCAT('%',#{searchKeyword},'%')
+			</if>
 		order by regDate desc
 		limit
 			#{fst},#{lst}
@@ -20,6 +24,7 @@
 	<insert id="materialInsertAction" parameterType="map">
 		insert into materials
 		(
+		category,
 		 name,
 		 quantity,
 		 comment,
@@ -27,6 +32,7 @@
 		)
 		values
 		(
+			#{category},
 			#{name},
 		 	#{quantity},
 		 	#{comment},
@@ -36,6 +42,7 @@
 	<select id="materialUpdate" parameterType="map" resultType="hashmap">
 		select 
 			no,
+			category,
 			name,
 			quantity,
 			comment
@@ -47,6 +54,7 @@
 		update
 			materials
 		set
+			category=#{category},
 			name=#{name},
 			quantity=#{quantity},
 			comment=#{comment}

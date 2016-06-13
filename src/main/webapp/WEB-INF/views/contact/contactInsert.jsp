@@ -41,6 +41,13 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s10 l12">
+					<i class="material-icons prefix">buisness</i>
+					<input type="text" id="buisness" name="buisness" class="validate" maxlength="45" length="45"> 
+					<label for="buisness">사업자</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">comment</i>
 					<input type="text" id="comment" name="comment" class="validate" maxlength="50" length="50"> 
 					<label for="comment">비고</label>

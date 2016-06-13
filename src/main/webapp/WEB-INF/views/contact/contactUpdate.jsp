@@ -42,8 +42,15 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s10 l12">
+					<i class="material-icons prefix">room</i>
+					<input type="tel" id="buisness" name="buisness" class="validate" value="${info.buisness}" maxlength="50" length="50"> 
+					<label for="disabled">사업자</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">comment</i>
-					<input type="text" id="comment" name="comment" class="validate" value="${info.comment}" maxlength="50" length="50"> 
+					<input type="text" id="comment" name="comment" class="validate" value="${info.comment}" maxlength="45" length="45"> 
 					<label for="password">비고</label>
 				</div>
 			</div>

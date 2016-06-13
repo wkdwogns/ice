@@ -4,8 +4,8 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col s6"><h2>일지</h2></div>
-			<div class="col s6"><button class="btn right" style="margin-top:20px;" onclick="estimateInsert()"><i class="material-icons left">cloud</i>등록</button></div>
+			<div class="col s6"><h3>일지</h3></div>
+			<div class="col s6"><button class="btn-large right" style="margin-top:20px;" onclick="estimateInsert()">일지등록</button></div>
 		</div>
 		
 		<div class="row">
@@ -17,19 +17,19 @@
 					<select name="search">
 						<option>선택</option>
 						<option value="title" <c:if test="${info.search eq 'title'}">selected</c:if>>제목</option>
-						<option value="name" <c:if test="${info.search eq 'name'}">selected</c:if>>거레처명</option>
+						<option value="name" <c:if test="${info.search eq 'name'}">selected</c:if>>거래처명</option>
 				    </select>
 			    </div>
 				<div class="col s3 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
 				<div class="col s4 l2"><button class="btn right" onclick="estimateInsert()">검색</button></div>
 			</form>
 		</div>
-		<table class="striped centered">
+		<table class="striped centered highlight">
         <thead>
 			<tr>
 				<th data-field="title">거래처</th>
 				<th data-field="title">제목</th>
-			    <th data-field="regDate">작성일</th>
+			    <th data-field="regDate">시공일</th>
 			</tr>
         </thead>
 
@@ -38,7 +38,7 @@
           	<tr onclick="detail(${diary.no})">
           		<td>${diary.name}</td>
           		<td>${diary.title}</td>
-	            <td>${diary.regDate}</td>
+	            <td>${diary.conDt}</td>
 			</tr>
           </c:forEach>
         </tbody>

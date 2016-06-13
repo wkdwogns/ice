@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<tiles:insertAttribute name="meta" />
 		<title><tiles:getAsString name="title"/></title>
 	</head>
