@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="input-field col s10 l12 hide-on-med-and-down">
 					<i class="material-icons prefix">account_circle</i> 
-					<input type="text" id="conDt" name="conDt" class="validate" maxlength="45" length="45">
+					<input type="text" id="conDt" name="conDt" class="validate" maxlength="45" length="45" required="required">
 					<label for="name">시공일</label>
 				</div>
 			</div>

@@ -17,6 +17,14 @@
 			
 			<div class="row">
 				<div class="input-field col s10 l12">
+					<i class="material-icons prefix">account_circle</i> 
+					<input type="text" id="conDt" name="conDt" class="validate" maxlength="45" length="45" value="${info.conDt}" disabled="disabled">
+					<label for="name">시공일</label>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">description</i> 
 					<input type="text" id="title" name="title" class="validate" maxlength="45" length="45" value="${info.title}" required="required">
 					<label for="title">제목</label>

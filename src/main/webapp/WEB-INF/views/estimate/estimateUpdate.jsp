@@ -17,26 +17,28 @@
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">description</i>
-					<input type="text" id="estimateTitle" name="estimateTitle" class="validate" maxlength="45" length="45" required="required"> 
+					<input type="text" id="estimateTitle" name="estimateTitle" class="validate" maxlength="45" length="45" required="required">
+					<label for="estimateTitle">견적서 명</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">account_circle</i>
-					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50" readonly="readonly" placeholder="거래처명"> 
+					<input type="text" id="name" name="name" class="validate" maxlength="50" length="50" readonly="readonly" placeholder="거래처명">
+					<label for="name">거래처 명</label>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">payment</i>
-					<input type="text"  id="price_kr" name="price_kr" class="validate" maxlength="50" length="50" placeholder="금액한글"> 
-					
+					<input type="text"  id="price_kr" name="price_kr" class="validate" maxlength="50" length="50" placeholder="금액한글">
+					<label for="price_kr">금액 한글</label>
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="text"  id="constructionDate" name="constructionDate" class="validate" maxlength="20" length="20" placeholder="시공일" readonly="readonly"> 
-					
+					<label for="constructionDate">시공일</label>
 				</div>
 			</div>
 			
@@ -44,12 +46,12 @@
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="number"  id="validity" name="validity" placeholder="유효기간" class="validate" maxlength="10" length="10"> 
-					
+					<label for="validity">견적 유효기간</label>
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">today</i>
 					<input type="number"  id="deliveryDate" name="deliveryDate" placeholder="납품일자" class="validate" maxlength="10" length="10"> 
-					
+					<label for="deliveryDate">납품기한</label>
 				</div>
 			</div>
 			
@@ -57,12 +59,12 @@
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">room</i>
 					<input type="text"  id="deliveryPlace" name="deliveryPlace" placeholder="납품장소" class="validate" maxlength="40" length="40"> 
-					
+					<label for="deliveryPlace">납품장소</label>
 				</div>
 				<div class="input-field col s10 l6">
 					<i class="material-icons prefix">payment</i>
 					<input type="text"  id="paymentType" name="paymentType" placeholder="지불조건" class="validate" maxlength="10" length="10"> 
-					
+					<label for="paymentType">대금 지불조건</label>
 				</div>
 			</div>
 			
@@ -304,6 +306,7 @@
 				});
 				$('#total').val(total);
 			});
+		   Materialize.updateTextFields();
 		},error:function(){
 			
 		}	

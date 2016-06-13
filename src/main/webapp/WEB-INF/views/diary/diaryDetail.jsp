@@ -13,7 +13,17 @@
 				<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${info.no}');"><i class="material-icons left">cloud</i>수정</button>
 			</div>
 		</div>
-		
+			<div class="row">
+				<div class="input-field col s6 l6">
+					<h5>거래처</h5>
+					<p>${info.name}</p>
+				</div>
+				<div class="input-field col s6 l6">
+					<h5>시공일</h5>
+					<p>${info.conDt}</p>
+				</div>
+			</div>
+			
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<h5>제목</h5>

@@ -85,16 +85,19 @@
    </select>
    <select id="diaryDetail" parameterType="map" resultType="hashmap">
    		select 
-   			no,
-   			contactNo,
-   			title,
-   			contents,
-   			regDate 
+   			d.no,
+   			d.conDt,
+   			d.contactNo,
+   			d.title,
+   			d.contents,
+   			d.regDate,
+   			c.name 
    		from 
-   			diary
+   			diary d,contacts c
    		where
-   			delyn='n'
-   			and no = #{no}
+   			d.delyn='n'
+   			and d.contactNo = c.no
+   			and d.no = #{no}
    </select>
    <select id="diaryImageDetail" parameterType="map" resultType="hashmap">
    		select 

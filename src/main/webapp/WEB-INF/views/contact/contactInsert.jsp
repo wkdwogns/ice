@@ -41,7 +41,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s10 l12">
-					<i class="material-icons prefix">buisness</i>
+					<i class="material-icons prefix">room</i>
 					<input type="text" id="buisness" name="buisness" class="validate" maxlength="45" length="45"> 
 					<label for="buisness">사업자</label>
 				</div>

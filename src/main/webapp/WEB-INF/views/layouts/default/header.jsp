@@ -4,7 +4,7 @@
 
 <div class="navbar-fixed">	
 	<nav>
-		<div class="nav-wrapper teal lighten-2">
+		<div class="nav-wrapper blue">
 			<a href="/contactList" class="brand-logo">한국냉동</a>
 			<a href="#" data-activates="sideBar" class="button-collapse"><i class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
@@ -17,7 +17,7 @@
 					<li><a href="/j_spring_security_logout">로그아웃</a></li>
 				</sec:authorize>
 			</ul>
-			<ul id="sideBar" class="side-nav  teal darken-3" >
+			<ul id="sideBar" class="side-nav  blue" >
 				<!-- <li><a href="/" class="white-text">홈</a></li> -->
 				<li><a href="/contactList" class="white-text">거래처 관리</a></li>
 				<li><a href="/estimateList" class="white-text">견적서 관리</a></li>
