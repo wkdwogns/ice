@@ -94,6 +94,9 @@
     		contacts
     	where
     		delyn='n'
+    		<if test="contact !=null">
+    		 and name like CONCAT('%',#{contact},'%')
+    		</if>
     </select>
     
 </mapper>
