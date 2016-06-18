@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,9 @@ public class EstimateController {
 	
 	@Autowired
 	private DiaryService diaryService;
+	
+	@Value("${save.path}")
+	private String savePath; 
 	
 	@RequestMapping(value = "estimateList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String estimateList(Locale locale, Model model,HttpServletRequest request) {
@@ -113,9 +117,9 @@ public class EstimateController {
 		estimateService.estimateInsertAction(param(request));
 		
 		String fileName = null;
-    	String savepath = "C:/img/";
+    	//String savepath = "C:/img/";
     	
-    	File saveFolder = new File(savepath);
+    	File saveFolder = new File(savePath);
 		if (!saveFolder.exists() || saveFolder.isFile()) {
 			saveFolder.mkdirs();
 		}
@@ -126,7 +130,7 @@ public class EstimateController {
 	                fileName = files[i].getOriginalFilename();
 	                byte[] bytes = files[i].getBytes();
 	                BufferedOutputStream buffStream = 
-	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
+	                        new BufferedOutputStream(new FileOutputStream(new File(savePath + fileName)));
 	                buffStream.write(bytes);
 	                buffStream.close();
 	                
@@ -135,8 +139,8 @@ public class EstimateController {
 	                k = fileName.lastIndexOf(".");
 	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
 	                
-	                File oldFile = new File(savepath + fileName);
-	                File newFile = new File(savepath+realFileName);
+	                File oldFile = new File(savePath + fileName);
+	                File newFile = new File(savePath+realFileName);
 	                oldFile.renameTo(newFile);
 	                
 	                Map<String,Object> param = new HashMap<String, Object>();
@@ -180,7 +184,7 @@ public class EstimateController {
 		estimateService.estimateUpdateAction(param(request));
 		
 		String fileName = null;
-    	String savepath = "C:/img/";
+    	//String savepath = "C:/img/";
     	
 		if (files != null && files.length >0) {
     		for(int i =0 ;i< files.length; i++){
@@ -188,7 +192,7 @@ public class EstimateController {
 	                fileName = files[i].getOriginalFilename();
 	                byte[] bytes = files[i].getBytes();
 	                BufferedOutputStream buffStream = 
-	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
+	                        new BufferedOutputStream(new FileOutputStream(new File(savePath + fileName)));
 	                buffStream.write(bytes);
 	                buffStream.close();
 	                
@@ -197,8 +201,8 @@ public class EstimateController {
 	                k = fileName.lastIndexOf(".");
 	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
 	                
-	                File oldFile = new File(savepath + fileName);
-	                File newFile = new File(savepath+realFileName);
+	                File oldFile = new File(savePath + fileName);
+	                File newFile = new File(savePath+realFileName);
 	                oldFile.renameTo(newFile);
 	                
 	                Map<String,Object> param = new HashMap<String, Object>();
@@ -222,12 +226,12 @@ public class EstimateController {
 
 		diaryService.imageDelete(param(request));
 		
-		String s = "c:/img/"+request.getParameter("virtualNm");
+		String s = savePath+request.getParameter("virtualNm");
 	    File f = new File(s);
 	    if (f.delete()) {
-	      System.out.println("�궘�젣 �꽦怨�: " + s);
+	      //System.out.println("삭제완료: " + s);
 	    } else {
-	      System.err.println("�궘�젣 �떎�뙣: " + s);
+	      //System.err.println("삭제실패: " + s);
 	    }
 	    
 		return "redirect:/estimateUpdate?no="+request.getParameter("no");

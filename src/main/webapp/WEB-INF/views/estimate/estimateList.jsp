@@ -61,25 +61,25 @@
 		<div class="row">
 			<div class="col s6"><h2>일지</h2></div>
 		</div>
-		<table class="striped centered">
-	        <thead>
-				<tr>
-					<th data-field="title">거래처명</th>
-					<th data-field="title">제목</th>
-				    <th data-field="regDate">작성일</th>
-				</tr>
-	        </thead>
-	
-	        <tbody>
-	          <c:forEach var="diary" items="${diaryList}">
-	          	<tr onclick="diaryDetail(${diary.no})">
-	          		<td>${diary.name}</td>
-	          		<td>${diary.title}</td>
-		            <td>${diary.regDate}</td>
-				</tr>
-	          </c:forEach>
-	        </tbody>
-	    </table>
+		<table class="striped centered highlight">
+        <thead>
+			<tr>
+				<th data-field="title">거래처</th>
+				<th data-field="title">제목</th>
+			    <th data-field="regDate">시공일</th>
+			</tr>
+        </thead>
+
+        <tbody>
+          <c:forEach var="diary" items="${diaryList}">
+          	<tr onclick="diaryDetail(${diary.no})">
+          		<td>${diary.name}</td>
+          		<td>${diary.title}</td>
+	            <td>${diary.conDt}</td>
+			</tr>
+          </c:forEach>
+        </tbody>
+      </table>
 	</div>
 	
       
