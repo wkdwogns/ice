@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,9 @@ public class DiaryController {
 	
 	@Autowired
 	private DiaryService diaryService;
+	
+	@Value("${save.path}")
+	private String savePath; 
 	
 	@RequestMapping(value = "diaryList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String diaryList(Locale locale, Model model,HttpServletRequest request) {
@@ -69,7 +73,7 @@ public class DiaryController {
 		String fileName = null;
     	String savepath = "C:/img/";
     	
-    	File saveFolder = new File(savepath);
+    	File saveFolder = new File(savePath);
 		if (!saveFolder.exists() || saveFolder.isFile()) {
 			saveFolder.mkdirs();
 		}
@@ -80,7 +84,7 @@ public class DiaryController {
 	                fileName = files[i].getOriginalFilename();
 	                byte[] bytes = files[i].getBytes();
 	                BufferedOutputStream buffStream = 
-	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
+	                        new BufferedOutputStream(new FileOutputStream(new File(savePath + fileName)));
 	                buffStream.write(bytes);
 	                buffStream.close();
 	                
@@ -89,8 +93,8 @@ public class DiaryController {
 	                k = fileName.lastIndexOf(".");
 	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
 	                
-	                File oldFile = new File(savepath + fileName);
-	                File newFile = new File(savepath+realFileName);
+	                File oldFile = new File(savePath + fileName);
+	                File newFile = new File(savePath+realFileName);
 	                oldFile.renameTo(newFile);
 	                
 	                Map<String,Object> param = new HashMap<String, Object>();
@@ -200,9 +204,9 @@ public class DiaryController {
 		String s = "c:/img/"+request.getParameter("virtualNm");
 	    File f = new File(s);
 	    if (f.delete()) {
-	      System.out.println("ÆÄÀÏ ¶Ç´Â µð·ºÅä¸®¸¦ ¼º°øÀûÀ¸·Î Áö¿ü½À´Ï´Ù: " + s);
+	      System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½: " + s);
 	    } else {
-	      System.err.println("ÆÄÀÏ ¶Ç´Â µð·ºÅä¸® Áö¿ì±â ½ÇÆÐ: " + s);
+	      System.err.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + s);
 	    }
 	    
 		return "redirect:/diaryUpdate/"+request.getParameter("updateNo");
