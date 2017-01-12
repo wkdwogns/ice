@@ -22,14 +22,14 @@
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">phone</i>
-					<input type="text" id="text" name="tel" class="validate" value="${info.tel}" maxlength="14" length="14"> 
+					<input type="tel" id="text" name="tel" class="validate" value="${info.tel}" maxlength="14" length="14"> 
 					<label for="disabled">전화번호</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<i class="material-icons prefix">room</i>
-					<input type="tel" id="address" name="address" class="validate" value="${info.address}" maxlength="50" length="50"> 
+					<input type="text" id="address" name="address" class="validate" value="${info.address}" maxlength="50" length="50"> 
 					<label for="disabled">주소</label>
 				</div>
 			</div>
