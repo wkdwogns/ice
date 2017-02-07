@@ -156,7 +156,7 @@ public class DiaryController {
 		String fileName = null;
     	String savepath = "C:/img/";
     	
-    	File saveFolder = new File(savepath);
+    	File saveFolder = new File(savePath);
 		if (!saveFolder.exists() || saveFolder.isFile()) {
 			saveFolder.mkdirs();
 		}
@@ -167,7 +167,7 @@ public class DiaryController {
 	                fileName = files[i].getOriginalFilename();
 	                byte[] bytes = files[i].getBytes();
 	                BufferedOutputStream buffStream = 
-	                        new BufferedOutputStream(new FileOutputStream(new File(savepath + fileName)));
+	                        new BufferedOutputStream(new FileOutputStream(new File(savePath + fileName)));
 	                buffStream.write(bytes);
 	                buffStream.close();
 	                
@@ -176,8 +176,8 @@ public class DiaryController {
 	                k = fileName.lastIndexOf(".");
 	                String realFileName = now +"_"+i+ fileName.substring(k, fileName.length());
 	                
-	                File oldFile = new File(savepath + fileName);
-	                File newFile = new File(savepath+realFileName);
+	                File oldFile = new File(savePath + fileName);
+	                File newFile = new File(savePath+realFileName);
 	                oldFile.renameTo(newFile);
 	                
 	                Map<String,Object> param = new HashMap<String, Object>();
@@ -201,7 +201,7 @@ public class DiaryController {
 
 		diaryService.imageDelete(param(request));
 		
-		String s = "c:/img/"+request.getParameter("virtualNm");
+		String s = savePath+request.getParameter("virtualNm");
 	    File f = new File(s);
 	    if (f.delete()) {
 	      System.out.println("���� �Ǵ� ���丮�� ���������� �������ϴ�: " + s);
