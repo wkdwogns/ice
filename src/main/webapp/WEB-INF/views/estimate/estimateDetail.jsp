@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <style>
 .card-panel {
     transition: box-shadow .25s;
@@ -16,8 +17,10 @@
 			<h5 id="estimateTitle"></h5>
 		</div>
 		<div class="col s6">
-			<button class="btn right red" style="margin-top: 20px; margin-right:10px;" onclick="del('${no}','${conDt}');"><i class="material-icons left">cloud</i>삭제</button>
-			<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${no}');"><i class="material-icons left">cloud</i>수정</button>
+			<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+				<button class="btn right red" style="margin-top: 20px; margin-right:10px;" onclick="del('${no}','${conDt}');"><i class="material-icons left">cloud</i>삭제</button>
+				<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${no}');"><i class="material-icons left">cloud</i>수정</button>
+			</sec:authorize>
 		</div>
 	</div>
 	<div class="row">

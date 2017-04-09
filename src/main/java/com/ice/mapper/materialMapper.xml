@@ -11,8 +11,8 @@
 			materials
 		where
 			delyn='n'
-			<if test="search == 'name'">
-				and name like CONCAT('%',#{searchKeyword},'%')
+			<if test="search2 == 'name'">
+				and name like CONCAT('%',#{searchKeyword2},'%')
 			</if>
 			<if test="search == 'category'">
 				and category like CONCAT('%',#{searchKeyword},'%')
@@ -77,8 +77,11 @@
 			materials
 		where
 			delyn='n'
-			<if test="search == 'name'">
-				and name like CONCAT('%',#{searchKeyword},'%')
+			<if test="search2 == 'name'">
+				and name like CONCAT('%',#{searchKeyword2},'%')
+			</if>
+			<if test="search == 'category'">
+				and category like CONCAT('%',#{searchKeyword},'%')
 			</if>
 	</select>
 

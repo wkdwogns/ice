@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <main>
 
 <div class="container">
@@ -125,10 +126,11 @@
 					<input type="text"  id="total" name="total" class="validate center-align" value="0" readonly="readonly" style="font-size:xx-large;color: black;"> 
 				</div>
 			</div>
-			
-			<button class="btn waves-effect waves-light" type="submit">등록
-		    	<i class="material-icons right">send</i>
-			</button>
+			<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+				<button class="btn waves-effect waves-light" type="submit">등록
+			    	<i class="material-icons right">send</i>
+				</button>
+			</sec:authorize>
 		</form>
 	</div>
 </div>

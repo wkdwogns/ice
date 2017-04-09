@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%
+   //치환 변수 선언
+    pageContext.setAttribute("cr", "\r"); //Space
+    pageContext.setAttribute("cn", "\n"); //Enter
+    pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+    pageContext.setAttribute("br", "<br/>"); //br 태그
+%> 
 <main>
 	
 	<div class="container">
@@ -8,10 +16,12 @@
 			<div class="col s6">
 				<h4 id="estimateTitle"></h4>
 			</div>
-			<div class="col s6">
-				<button class="btn right red" style="margin-top: 20px; margin-right:10px;" onclick="del('${info.no}');"><i class="material-icons left">cloud</i>삭제</button>
-				<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${info.no}');"><i class="material-icons left">cloud</i>수정</button>
-			</div>
+			<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+				<div class="col s6">
+					<button class="btn right red" style="margin-top: 20px; margin-right:10px;" onclick="del('${info.no}');"><i class="material-icons left">cloud</i>삭제</button>
+					<button class="btn right" style="margin-top: 20px; margin-right:10px;" onclick="update('${info.no}');"><i class="material-icons left">cloud</i>수정</button>
+				</div>
+			</sec:authorize>
 		</div>
 			<div class="row">
 				<div class="input-field col s6 l6">
@@ -36,8 +46,7 @@
 			<div class="row">
 				<div class="input-field col s10 l12">
 					<h5>내용</h5>
-					<p class="light italic">${info.contents}</p>
-					
+					<p class="light italic">${fn:replace( info.contents , crcn, br)}</p>
 				</div>
 			</div>
 		

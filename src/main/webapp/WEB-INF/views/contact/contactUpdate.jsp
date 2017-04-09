@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <main>
 
 <div class="container">
@@ -54,12 +55,13 @@
 					<label for="password">비고</label>
 				</div>
 			</div>
-			<button class="btn waves-effect waves-light" type="submit">수정
-				<i class="material-icons right">send</i>
-			</button>
-			<button class="btn waves-effect waves-light red" type="button" onclick="del(${info.no})">삭제
-				<i class="material-icons right">send</i>
-			</button>
+			<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+				<button class="btn waves-effect waves-light" type="submit">수정<i class="material-icons right">send</i></button>
+				<button class="btn waves-effect waves-light red" type="button" onclick="del(${info.no})">삭제
+					<i class="material-icons right">send</i>
+				</button>
+			</sec:authorize>
+			
 		</form>
 	</div>
 </div>

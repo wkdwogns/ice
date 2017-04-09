@@ -17,8 +17,8 @@
    			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
    				and d.conDt between #{sDm} and #{eDm} 
    			</if>
-   			<if test="search == 'title'">
-				and d.title like CONCAT('%',#{searchKeyword},'%')
+   			<if test="search2 == 'title'">
+				and d.title like CONCAT('%',#{searchKeyword2},'%')
 			</if>
 			<if test="search == 'contactNo'">
 				and d.contactNo = #{searchKeyword}
@@ -71,16 +71,23 @@
    </insert>
    <select id="diaryListCnt" parameterType="map" resultType="int">
    		select 
-   			count(*) 
+   			count(*)
    		from 
-   			diary
+   			diary d,contacts c
    		where
-   			delyn='n'
+   			d.delyn='n'
+   			and d.contactNo = c.no
    			<if test="sDm != null and eDm != null and sDm != '' and eDm != ''">
-   				and regDate between #{sDm} and #{eDm} 
+   				and d.conDt between #{sDm} and #{eDm} 
    			</if>
-   			<if test="search == 'title'">
-				and title like CONCAT('%',#{searchKeyword},'%')
+   			<if test="search2 == 'title'">
+				and d.title like CONCAT('%',#{searchKeyword2},'%')
+			</if>
+			<if test="search == 'contactNo'">
+				and d.contactNo = #{searchKeyword}
+			</if>
+			<if test="search == 'name'">
+				and c.name like CONCAT('%',#{searchKeyword},'%')
 			</if>
    </select>
    <select id="diaryDetail" parameterType="map" resultType="hashmap">

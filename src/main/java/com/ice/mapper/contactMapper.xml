@@ -15,7 +15,7 @@
     		<if test="search == 'name'">
 				and name like CONCAT('%',#{searchKeyword},'%')
 			</if>
-    	order by regDate desc
+    	order by regDate desc,no desc
 		limit
 			#{fst},#{lst}
     </select>

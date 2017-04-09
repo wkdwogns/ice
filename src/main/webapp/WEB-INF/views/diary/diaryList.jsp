@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <main>
 	
 	<div class="container">
 		<div class="row">
 			<div class="col s6"><h3>일지</h3></div>
-			<div class="col s6"><button class="btn-large right" style="margin-top:20px;" onclick="estimateInsert()">일지등록</button></div>
+			<sec:authorize access="hasAnyRole('ROLE_MANAGER')">
+				<div class="col s6"><button class="btn-large right" style="margin-top:20px;" onclick="estimateInsert()">일지등록</button></div>
+			</sec:authorize>
 		</div>
 		
 		<div class="row">
@@ -13,14 +16,22 @@
 				<input type="hidden" id="pIndex" name="pIndex">
 				<div class="col s6 l2"><input type="text" id="sDm" name="sDm" value="${info.sDm}" placeholder="시작일"></div>
 				<div class="col s6 l2"><input type="text" id="eDm" name="eDm" value="${info.eDm}" placeholder="종료일"></div>
-				<div class="col s5 l3">
+				<div class="col s4 l3">
 					<select name="search">
 						<option>선택</option>
-						<option value="title" <c:if test="${info.search eq 'title'}">selected</c:if>>제목</option>
 						<option value="name" <c:if test="${info.search eq 'name'}">selected</c:if>>거래처명</option>
 				    </select>
 			    </div>
-				<div class="col s3 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
+				<div class="col s6 l3"><input type="text" name="searchKeyword" value="${info.searchKeyword}"></div>
+				
+				<div class="col s4 l3">
+					<select name="search2">
+						<option>선택</option>
+						<option value="title" <c:if test="${info.search2 eq 'title'}">selected</c:if>>제목</option>
+				    </select>
+			    </div>
+				<div class="col s4 l3"><input type="text" name="searchKeyword2" value="${info.searchKeyword2}"></div>
+				
 				<div class="col s4 l2"><button class="btn right" onclick="estimateInsert()">검색</button></div>
 			</form>
 		</div>
@@ -46,16 +57,16 @@
 	</div>
 	
 	<ul class="pagination center-align">
-		<c:if test="${info.pNo ne  '1'}">
-			<li><a href='javascript:page(${info.pNo-1});'><i class="material-icons">chevron_left</i></a></li>
-		</c:if>
+		
+		<li><a href='javascript:page(${info.goPrev});'><i class="material-icons">chevron_left</i></a></li>
+		
 		<c:forEach var="idx" begin="${info.pageStart}" end="${info.pageEnd}">
 			<c:if test="${idx == info.pNo}"><li class="active blue"><a>${idx}</a></li></c:if>
 			<c:if test="${idx != info.pNo}"><li><a href='javascript:page(${idx});'>${idx}</a></li></c:if>
 		</c:forEach>
-		<c:if test="${info.pNo ne info.pageEnd}">
-			<li class="waves-effect"><a href="javascript:page(${info.pNo+1});"><i class="material-icons">chevron_right</i></a></li>
-		</c:if>
+		
+		<li class="waves-effect"><a href="javascript:page(${info.goNext});"><i class="material-icons">chevron_right</i></a></li>
+		
 	</ul>
 	
 	<form id="eForm" action="" method="post">
@@ -67,6 +78,7 @@
 <script src="/resources/datepicker/js/moment.js"></script>        
 <script src="/resources/datepicker/js/bootstrap-material-datetimepicker.js"></script>
 <script>
+
 	$('select').material_select();
 	$('#eDm').bootstrapMaterialDatePicker({ weekStart : 0 ,time:false});
 	$('#sDm').bootstrapMaterialDatePicker({ weekStart : 0,time:false }).on('change', function(e, date)
