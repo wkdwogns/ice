@@ -15,7 +15,7 @@
 				and name like CONCAT('%',#{searchKeyword2},'%')
 			</if>
 			<if test="search == 'category'">
-				and category like CONCAT('%',#{searchKeyword},'%')
+				and category = #{searchKeyword}
 			</if>
 		order by regDate desc
 		limit
@@ -81,7 +81,7 @@
 				and name like CONCAT('%',#{searchKeyword2},'%')
 			</if>
 			<if test="search == 'category'">
-				and category like CONCAT('%',#{searchKeyword},'%')
+				and category = #{searchKeyword}
 			</if>
 	</select>
 
