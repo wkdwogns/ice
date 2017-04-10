@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ice.app.util.Utilities;
 
@@ -88,6 +89,17 @@ public class MaterialController {
 		materialService.materialDelete(param);
 		
 		return "redirect:/materialList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "materialSort", method = {RequestMethod.POST})
+	public List<Map<String,Object>> materialSort(HttpServletRequest request) {
+		logger.info("materialSort");
+		Map<String,Object> param = new HashMap<String, Object>();
+		
+		List<Map<String,Object>> list = materialService.materialSort(param);
+		
+		return list;
 	}
 	
 	@SuppressWarnings("unchecked")

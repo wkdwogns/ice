@@ -85,4 +85,12 @@
 			</if>
 	</select>
 
+	<select id="materialSort" parameterType="map" resultType="map">
+		select 
+			category,
+			no 
+		from 
+			materials 
+		group by category
+	</select>
 </mapper>

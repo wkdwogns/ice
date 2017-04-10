@@ -17,4 +17,6 @@ public interface MaterialService {
 
 	int materialListCnt(Map<String, Object> param);
 
+	List<Map<String, Object>> materialSort(Map<String, Object> param);
+
 }

@@ -46,5 +46,10 @@ public class MaterialServiceImpl implements MaterialService{
 		
 		return materialDao.materialListCnt(param);
 	}
+
+	@Override
+	public List<Map<String, Object>> materialSort(Map<String, Object> param) {
+		return materialDao.materialSort(param);
+	}
 	
 }

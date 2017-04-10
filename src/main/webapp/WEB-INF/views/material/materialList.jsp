@@ -1,6 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<link rel="stylesheet" href="/resources/swiper/swiper.min.css">
+
+<!-- Demo styles -->
+<style>
+
+.swiper-container {
+    width: 100%;
+    margin: 20px auto;
+    padding-bottom:20px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 14px;
+    background: #fff;
+    width: 20%;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+</style>
 <main>
 	
 	<div class="container">
@@ -36,6 +66,13 @@
 			</form>
 		</div>
 		
+		<!-- Swiper -->
+	    <div class="swiper-container">
+	        <div class="swiper-wrapper"></div>
+	        <!-- Add Scrollbar -->
+	        <div class="swiper-scrollbar"></div>
+	    </div>
+		
 		<table class="striped centered highlight">
 			<thead>
 				<tr>
@@ -69,7 +106,7 @@
 	</ul>
 	
 </main>
-
+<script src="/resources/swiper/swiper.min.js"></script>
 <script>
 	$('select').material_select();
 	function update(no){
@@ -82,6 +119,37 @@
 	
 	function page(no){
 		$('#pIndex').val(no);
+		$('#sForm').submit();
+	}
+	
+	$.ajax({
+		url:'/materialSort',
+		method:'post',
+		data:{},
+		success:function(data){
+			console.log(data);
+			var html='';
+			for(var i in data){
+				html+='<div class="swiper-slide"><a onclick="searching(\''+data[i].category+'\')">'+data[i].category+'</a></div>'
+			}
+			$('.swiper-wrapper').html(html);
+			var swiper = new Swiper('.swiper-container', {
+		        scrollbar: '.swiper-scrollbar',
+		        scrollbarHide: true,
+		        slidesPerView: 'auto',
+		        centeredSlides: true,
+		        spaceBetween: 30,
+		        grabCursor: true
+		    });
+		},
+		error:function(){
+			
+		}
+	});
+	
+	function searching(nm){
+		$('[name=search]').val('category').material_select();
+		$('[name=searchKeyword]').val(nm);
 		$('#sForm').submit();
 	}
 </script>
